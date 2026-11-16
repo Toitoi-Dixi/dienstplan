@@ -205,8 +205,6 @@ function speichernZelle() {
         );
     const alterEintrag =
     plan[key];
-console.log(
-"ALT", alterEintrag);
      plan[key] = {
     art: art,
     dienst:
@@ -241,11 +239,8 @@ function offeneDiensteErmitteln() {
 
             const datum =
                 key.split("_")[1];
-console.log(
-    "OFFEN:",
-    fahrerName,
-    JSON.stringify(eintrag)
-);
+
+
 let dienstName = eintrag?.dienst;
     if (!dienstName) {
 
@@ -596,8 +591,6 @@ async function ladeWochenmatrix() {
     wochenmatrix = data;
     ladePlan();
 
-console.log("WM_ERROR:", error);
-
     if (error) {
 
         console.log(error);
@@ -613,10 +606,7 @@ async function ladeFahrer() {
         .from("Fahrer_Stammdaten")
         .select("*")
         .eq("status", "Aktiv");
-
-    console.log("FAHRER:", data);
-
-    if (error) {
+ if (error) {
 
         console.log(error);
         return;
@@ -693,8 +683,6 @@ async function ladeFahrzeuge() {
         await supabaseClient
             .from("Fahrzeug_Stammdaten")
             .select("*");
-
-    console.log("FAHRZEUGE:", data);
 
     if (error) {
 
