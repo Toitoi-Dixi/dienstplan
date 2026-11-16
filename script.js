@@ -234,16 +234,17 @@ function offeneDiensteErmitteln() {
     for (const key in plan) {
 
         const eintrag = plan[key];
-        console.log(
-    "OFFEN:",
-    fahrerName,
-    eintrag
-);
+
           const fahrerName =
                 key.split("_")[0];
 
             const datum =
                 key.split("_")[1];
+console.log(
+    "OFFEN:",
+    fahrerName,
+    JSON.stringify(eintrag)
+);
 let dienstName = eintrag?.dienst;
     if (!dienstName) {
 
