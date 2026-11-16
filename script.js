@@ -205,11 +205,7 @@ function speichernZelle() {
     const alterEintrag =
     plan[key];
 console.log(
-    "SPEICHERE:",
-    art,
-    dienst,
-    fahrzeug
-);
+"ALT", alterEintrag);
      plan[key] = {
     art: art,
     dienst:
