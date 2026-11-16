@@ -234,7 +234,33 @@ function offeneDiensteErmitteln() {
     for (const key in plan) {
 
         const eintrag = plan[key];
+let dienstName = eintrag?.dienst;
+    if (!dienstName) {
 
+    const datumObj =
+        new Date(datum);
+
+    const wochentag =
+        [
+            "Sonntag",
+            "Montag",
+            "Dienstag",
+            "Mittwoch",
+            "Donnerstag",
+            "Freitag",
+            "Samstag"
+        ][datumObj.getDay()];
+
+    const wmEintrag =
+        wochenmatrix.find(
+            w =>
+                w.fahrer === fahrerName &&
+                w.wochentag === wochentag
+        );
+
+    dienstName =
+        wmEintrag?.dienst || "";
+}    
         if (
             eintrag.art === "Urlaub" ||
             eintrag.art === "Frei" ||
@@ -284,7 +310,7 @@ console.log(
 );
     liste.push({
         datum: datum,
-        dienst: eintrag?.dienst || ""
+        dienst: dienstName
     });
 }}}
     return liste;
