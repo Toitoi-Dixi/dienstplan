@@ -309,6 +309,12 @@ console.log(
     wochentag,
     eintrag
 );
+    console.log(
+    "OFFEN:",
+    fahrerName,
+    dienstName,
+    eintrag
+);
     liste.push({
         datum: datum,
         dienst: dienstName
