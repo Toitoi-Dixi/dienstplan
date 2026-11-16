@@ -147,6 +147,14 @@ function zelleBearbeiten(name, datum) {
                 w.fahrer === name &&
                 w.wochentag === wochentag
         );
+if (!plan[k]) {
+
+    const eintrag =
+        wochenmatrix.find(
+            w =>
+                w.fahrer === name &&
+                w.wochentag === wochentag
+        );
 
     plan[k] = {
         art: "Dienst",
@@ -154,6 +162,7 @@ function zelleBearbeiten(name, datum) {
         fahrzeug: eintrag?.fahrzeug || ""
     };
 }
+
 
     document.getElementById("artInput").value =
         plan[k].art || "Dienst";
