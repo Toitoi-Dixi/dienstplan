@@ -203,22 +203,11 @@ function speichernZelle() {
             aktuellesDatum
         );
 
-    if (art === "Dienst") {
-
         plan[key] = {
             art: art,
             dienst: dienst,
             fahrzeug: fahrzeug
         };
-
-    } else {
-
-        plan[key] = {
-            art: art
-            dienst: dienst,
-            fahrzeug: fahrzeug
-        };
-    }
 
     schliessenModal();
 
