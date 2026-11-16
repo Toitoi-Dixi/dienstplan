@@ -128,7 +128,6 @@ function zelleBearbeiten(name, datum) {
 
     const stamm =
         findeStammdaten(name);
- {
 
     const wochentag =
         [
@@ -141,28 +140,21 @@ function zelleBearbeiten(name, datum) {
             "Samstag"
         ][new Date(datum).getDay()];
 
-    const eintrag =
-        wochenmatrix.find(
-            w =>
-                w.fahrer === name &&
-                w.wochentag === wochentag
-        );
-if (!plan[k]) {
+    if (!plan[k]) {
 
-    const eintrag =
-        wochenmatrix.find(
-            w =>
-                w.fahrer === name &&
-                w.wochentag === wochentag
-        );
+        const eintrag =
+            wochenmatrix.find(
+                w =>
+                    w.fahrer === name &&
+                    w.wochentag === wochentag
+            );
 
-    plan[k] = {
-        art: "Dienst",
-        dienst: eintrag?.dienst || "",
-        fahrzeug: eintrag?.fahrzeug || ""
-    };
-}
-
+        plan[k] = {
+            art: "Dienst",
+            dienst: eintrag?.dienst || "",
+            fahrzeug: eintrag?.fahrzeug || ""
+        };
+    }
 
     document.getElementById("artInput").value =
         plan[k].art || "Dienst";
@@ -297,27 +289,6 @@ let dienstName = eintrag?.dienst;
                 );
 
 if (stamm) {
-
-    const datumObj =
-        new Date(datum);
-
-    const wochentag =
-        [
-            "Sonntag",
-            "Montag",
-            "Dienstag",
-            "Mittwoch",
-            "Donnerstag",
-            "Freitag",
-            "Samstag"
-        ][datumObj.getDay()];
-
-    const eintrag =
-        wochenmatrix.find(
-            w =>
-                w.fahrer === fahrerName &&
-                w.wochentag === wochentag
-        );
     liste.push({
         datum: datum,
         dienst: dienstName
