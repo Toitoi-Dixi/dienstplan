@@ -202,17 +202,25 @@ function speichernZelle() {
             aktuellerFahrer,
             aktuellesDatum
         );
+    const alterEintrag =
+    plan[key];
 console.log(
     "SPEICHERE:",
     art,
     dienst,
     fahrzeug
 );
-        plan[key] = {
-            art: art,
-            dienst: dienst,
-            fahrzeug: fahrzeug
-        };
+     plan[key] = {
+    art: art,
+    dienst:
+        dienst ||
+        alterEintrag?.dienst ||
+        "",
+    fahrzeug:
+        fahrzeug ||
+        alterEintrag?.fahrzeug ||
+        ""
+}; 
 
     schliessenModal();
 
