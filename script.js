@@ -215,6 +215,8 @@ function speichernZelle() {
 
         plan[key] = {
             art: art
+            dienst: dienst,
+            fahrzeug: fahrzeug
         };
     }
 
