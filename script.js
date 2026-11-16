@@ -234,6 +234,11 @@ function offeneDiensteErmitteln() {
     for (const key in plan) {
 
         const eintrag = plan[key];
+          const fahrerName =
+                key.split("_")[0];
+
+            const datum =
+                key.split("_")[1];
 let dienstName = eintrag?.dienst;
     if (!dienstName) {
 
@@ -269,11 +274,7 @@ let dienstName = eintrag?.dienst;
             eintrag.art === "Zeitausgleich"
         ) {
 
-            const fahrerName =
-                key.split("_")[0];
-
-            const datum =
-                key.split("_")[1];
+          
 
             const stamm =
                 findeStammdaten(
