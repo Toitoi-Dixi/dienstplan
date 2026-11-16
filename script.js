@@ -202,7 +202,12 @@ function speichernZelle() {
             aktuellerFahrer,
             aktuellesDatum
         );
-
+console.log(
+    "SPEICHERE:",
+    art,
+    dienst,
+    fahrzeug
+);
         plan[key] = {
             art: art,
             dienst: dienst,
@@ -300,18 +305,6 @@ if (stamm) {
                 w.fahrer === fahrerName &&
                 w.wochentag === wochentag
         );
-console.log(
-    "OFFENER DIENST:",
-    fahrerName,
-    wochentag,
-    eintrag
-);
-    console.log(
-    "OFFEN:",
-    fahrerName,
-    dienstName,
-    eintrag
-);
     liste.push({
         datum: datum,
         dienst: dienstName
