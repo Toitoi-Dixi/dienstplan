@@ -66,6 +66,12 @@ function fahrerHinzufuegen() {
 
 }
 function schliesseNeuenFahrer() {
+
+    document.getElementById(
+        "fahrerNeuOverlay"
+    ).style.display = "none";
+
+}
     async function fahrerSpeichern() {
 
     const familienname =
