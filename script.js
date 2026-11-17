@@ -170,10 +170,7 @@ function fahrerInfo() {
 
     fahrerStammdaten.forEach(
         fahrer => {
-
-            ...
-
-            select.appendChild(
+      select.appendChild(
                 option
             );
 
