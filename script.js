@@ -130,10 +130,38 @@ async function fahrerInaktivSetzen() {
     ladeFahrer();
    
 }
-function fahrerInfo() {
+async function fahrerInfo() {
+
+    const name =
+        prompt(
+            "Nachname des Fahrers:"
+        );
+
+    if (!name) return;
+
+    const { data, error } =
+        await supabaseClient
+            .from("Fahrer_Stammdaten")
+            .select("*")
+            .eq(
+                "familienname",
+                name
+            )
+            .single();
+
+    if (error) {
+
+        zeigeMeldung(
+            "❌ Fahrer nicht gefunden"
+        );
+
+        return;
+    }
 
     zeigeMeldung(
-        "🚧 Fahrerinfo folgt"
+        data.vorname +
+        " " +
+        data.familienname
     );
 }
 /* ==========================
@@ -626,7 +654,6 @@ async function ladeWochenmatrix() {
             .from("Wochenmatrix")
             .select("*");
 
-  console.log("WOCHENMATRIX:", data);
     wochenmatrix = data;
     ladePlan();
 
