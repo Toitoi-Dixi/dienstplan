@@ -234,3 +234,13 @@ th {
 .menu hr {
     margin: 12px 0;
 }
+.fahrername {
+    font-weight: bold;
+}
+
+.fahrerchip {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+}
