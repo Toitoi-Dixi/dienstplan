@@ -247,14 +247,25 @@ th {
 }
 #meldung {
     position: fixed;
-    top: 20px;
-    right: 20px;
+
+    top: 80px;
+
+    left: 50%;
+    transform: translateX(-50%);
+
     background: #0078d4;
     color: white;
-    padding: 12px 20px;
-    border-radius: 8px;
+
+    padding: 18px 35px;
+
+    border-radius: 10px;
+
+    font-size: 18px;
     font-weight: bold;
+
     display: none;
+
     z-index: 9999;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
