@@ -735,24 +735,8 @@ fahrerStammdaten = data.map(
             fahrer.familienname,
 
         chip:
-            fahrer.chip
-fahrerStammdaten = data.map(
-    fahrer => ({
-
-        name:
-            fahrer.vorname +
-            " " +
-            fahrer.familienname,
-
-        vorname:
-            fahrer.vorname,
-
-        familienname:
-            fahrer.familienname,
-
-        chip:
             fahrer.chip,
-
+        
         telefon_privat:
             fahrer.telefon_privat,
 
