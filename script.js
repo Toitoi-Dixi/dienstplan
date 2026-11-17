@@ -132,6 +132,34 @@ async function fahrerInaktivSetzen() {
 }
 function fahrerInfo() {
 
+    const select =
+        document.getElementById(
+            "fahrerInfoSelect"
+        );
+
+    select.innerHTML = "";
+
+    fahrerStammdaten.forEach(
+        fahrer => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                fahrer.familienname;
+
+            option.textContent =
+                fahrer.name;
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
     document.getElementById(
         "fahrerInfoOverlay"
     ).style.display = "flex";
