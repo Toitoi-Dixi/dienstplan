@@ -138,7 +138,20 @@ function fahrerInfo() {
         );
 
     select.innerHTML = "";
+    
+const leerOption =
+    document.createElement(
+        "option"
+    );
 
+leerOption.value = "";
+
+leerOption.textContent =
+    "Bitte Fahrer auswählen";
+
+select.appendChild(
+    leerOption
+);
     fahrerStammdaten.forEach(
         fahrer => {
 
@@ -164,7 +177,9 @@ function fahrerInfo() {
 document.getElementById(
     "fahrerInfoOverlay"
 ).style.display = "flex";}
-aktualisiereFahrerInfo();
+document.getElementById(
+    "fahrerInfoDaten"
+).innerHTML = "";
 function aktualisiereFahrerInfo() {
 
     const familienname =
