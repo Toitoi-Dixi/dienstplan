@@ -65,17 +65,6 @@ function fahrerHinzufuegen() {
     ).style.display = "flex";
 
 }
-document.getElementById(
-    "neuFamilienname"
-).value = "";
-
-document.getElementById(
-    "neuVorname"
-).value = "";
-
-document.getElementById(
-    "neuChip"
-).value = "";
 function schliesseNeuenFahrer() {
 
     document.getElementById(
