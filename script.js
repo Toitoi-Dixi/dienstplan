@@ -185,20 +185,42 @@ console.log(
         "fahrerInfoDaten"
     )
 );
-    document.getElementById(
-        "fahrerInfoDaten"
-    ).innerHTML =
+document.getElementById(
+    "fahrerInfoDaten"
+).innerHTML =
 
-        "Vorname: " +
-        fahrer.vorname +
+    "<b>Vorname:</b> " +
+    (fahrer.vorname || "") +
 
-        "<br><br>Nachname: " +
-        fahrer.familienname +
+    "<br><br><b>Nachname:</b> " +
+    (fahrer.familienname || "") +
 
-        "<br><br>Chip: " +
-        fahrer.chip;
+    "<br><br><b>Chip:</b> " +
+    (fahrer.chip || "") +
 
-}
+    "<br><br><b>Telefon privat:</b> " +
+    (fahrer.telefon_privat || "-") +
+
+    "<br><br><b>Telefon dienstlich:</b> " +
+    (fahrer.telefon_dienstlich || "-") +
+
+    "<br><br><b>E-Mail:</b> " +
+    (fahrer.email || "-") +
+
+    "<br><br><b>Adresse:</b> " +
+    (fahrer.adresse || "-") +
+
+    "<br><br><b>PLZ:</b> " +
+    (fahrer.plz || "-") +
+
+    "<br><br><b>Ort:</b> " +
+    (fahrer.ort || "-") +
+
+    "<br><br><b>Qualifikationen:</b> " +
+    (fahrer.qualifikationen || "-") +
+
+    "<br><br><b>Status:</b> " +
+    (fahrer.status || "-");
 function schliesseFahrerInfo() {
 
     document.getElementById(
