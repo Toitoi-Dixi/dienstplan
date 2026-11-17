@@ -126,16 +126,16 @@ async function fahrerInaktivSetzen() {
 );
         return;
     }
+
+    ladeFahrer();
+   
+}
 function fahrerInfo() {
 
     zeigeMeldung(
         "🚧 Fahrerinfo folgt"
     );
 }
-    ladeFahrer();
-   
-}
-
 /* ==========================
    MODAL
 ========================== */
