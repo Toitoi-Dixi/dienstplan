@@ -126,7 +126,12 @@ async function fahrerInaktivSetzen() {
 );
         return;
     }
+function fahrerInfo() {
 
+    zeigeMeldung(
+        "🚧 Fahrerinfo folgt"
+    );
+}
     ladeFahrer();
    
 }
