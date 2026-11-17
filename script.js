@@ -131,7 +131,7 @@ function schliesseNeuenFahrer() {
         "fahrerNeuOverlay"
     ).style.display = "none";
 
-}
+
 
 async function fahrerInaktivSetzen() {
 
