@@ -137,6 +137,13 @@ function fahrerInfo() {
     ).style.display = "flex";
 
 }
+function schliesseFahrerInfo() {
+
+    document.getElementById(
+        "fahrerInfoOverlay"
+    ).style.display = "none";
+
+}
 /* ==========================
    MODAL
 ========================== */
