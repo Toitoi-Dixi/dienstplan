@@ -35,7 +35,26 @@ function findeStammdaten(name) {
         return f.name === name;
     });
 }
+function zeigeMeldung(text) {
 
+    const meldung =
+        document.getElementById(
+            "meldung"
+        );
+
+    meldung.textContent =
+        text;
+
+    meldung.style.display =
+        "block";
+
+    setTimeout(() => {
+
+        meldung.style.display =
+            "none";
+
+    }, 3000);
+}
 /* ==========================
    FAHRER
 ========================== */
