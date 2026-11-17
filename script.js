@@ -83,22 +83,68 @@ function schliesseNeuenFahrer() {
     ).style.display = "none";
 
 }
-    async function fahrerSpeichern() {
+async function fahrerSpeichern() {
 
     const familienname =
         document.getElementById(
             "neuFamilienname"
-        ).value;
+        ).value.trim();
 
     const vorname =
         document.getElementById(
             "neuVorname"
-        ).value;
+        ).value.trim();
 
     const chip =
         document.getElementById(
             "neuChip"
-        ).value;
+        ).value.trim();
+
+    if (
+        !familienname ||
+        !vorname ||
+        !chip
+    ) {
+
+        zeigeMeldung(
+            "⚠️ Alle Felder ausfüllen"
+        );
+
+        return;
+    }
+
+    const chipVorhanden =
+        fahrerStammdaten.find(
+            f => f.chip === chip
+        );
+
+    if (chipVorhanden) {
+
+        zeigeMeldung(
+            "❌ Chipnummer bereits vergeben"
+        );
+
+        return;
+    }
+
+    const fahrerVorhanden =
+        fahrerStammdaten.find(
+            f =>
+                f.vorname?.toLowerCase() ===
+                    vorname.toLowerCase()
+                &&
+                f.familienname?.toLowerCase() ===
+                    familienname.toLowerCase()
+        );
+
+    if (fahrerVorhanden) {
+
+        zeigeMeldung(
+            "❌ Fahrer existiert bereits"
+        );
+
+        return;
+    }
 
     const { error } =
         await supabaseClient
@@ -121,12 +167,26 @@ function schliesseNeuenFahrer() {
 
     if (error) {
 
+        console.log(error);
+
         zeigeMeldung(
             "❌ Fehler beim Speichern"
         );
 
         return;
     }
+
+    document.getElementById(
+        "neuFamilienname"
+    ).value = "";
+
+    document.getElementById(
+        "neuVorname"
+    ).value = "";
+
+    document.getElementById(
+        "neuChip"
+    ).value = "";
 
     schliesseNeuenFahrer();
 
@@ -135,7 +195,6 @@ function schliesseNeuenFahrer() {
     );
 
     ladeFahrer();
-
 }
 
     document.getElementById(
