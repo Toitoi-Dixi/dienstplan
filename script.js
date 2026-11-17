@@ -130,39 +130,12 @@ async function fahrerInaktivSetzen() {
     ladeFahrer();
    
 }
-async function fahrerInfo() {
+function fahrerInfo() {
 
-    const name =
-        prompt(
-            "Nachname des Fahrers:"
-        );
+    document.getElementById(
+        "fahrerInfoOverlay"
+    ).style.display = "flex";
 
-    if (!name) return;
-
-    const { data, error } =
-        await supabaseClient
-            .from("Fahrer_Stammdaten")
-            .select("*")
-            .eq(
-                "familienname",
-                name
-            )
-            .single();
-
-    if (error) {
-
-        zeigeMeldung(
-            "❌ Fahrer nicht gefunden"
-        );
-
-        return;
-    }
-
-    zeigeMeldung(
-        data.vorname +
-        " " +
-        data.familienname
-    );
 }
 /* ==========================
    MODAL
