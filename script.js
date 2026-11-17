@@ -624,11 +624,22 @@ async function ladeFahrer() {
         return;
     }
 
-  fahrerStammdaten = data.map(
+fahrerStammdaten = data.map(
     fahrer => ({
 
         name:
-            fahrer.familienname
+            fahrer.vorname +
+            " " +
+            fahrer.familienname,
+
+        vorname:
+            fahrer.vorname,
+
+        familienname:
+            fahrer.familienname,
+
+        chip:
+            fahrer.chip
 
     })
 );
