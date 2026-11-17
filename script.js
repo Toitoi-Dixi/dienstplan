@@ -426,11 +426,20 @@ if (isNaN(von) || isNaN(bis))
         const fahrer =
             fahrerStammdaten[f];
 
-        let row =
-            "<tr>" +
-            "<td class='fahrer'>" +
-            fahrer.name +
-              "</td>";
+       let row =
+    "<tr>" +
+    "<td class='fahrer'>" +
+
+    "<div class='fahrername'>" +
+    fahrer.name +
+    "</div>" +
+
+    "<div class='fahrerchip'>" +
+    fahrer.chip +
+    "</div>" +
+
+    "</td>";
+
 
         for (let t = 0; t < tage.length; t++) {
 
@@ -580,18 +589,6 @@ document.getElementById("bis").value =
     bisDatum;
    
 };
-async function testeSupabase() {
-
-    const { data, error } =
-        await supabaseClient
-            .from("Dienste")
-            .select("*");
-
-    console.log("DATA:",data);
-    console.log("ERROR:",error);
-}
-console.log("TEST START");
-testeSupabase();
 async function ladeWochenmatrix() {
 
     const { data, error } =
