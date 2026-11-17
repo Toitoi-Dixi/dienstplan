@@ -73,46 +73,6 @@ function schliesseNeuenFahrer() {
 
 }
 
-    const familienname =
-        prompt("Nachname:");
-
-    if (!familienname) return;
-
-    const vorname =
-        prompt("Vorname:");
-
-    if (!vorname) return;
-
-    const chip =
-        prompt("Chipnummer:");
-
-    if (!chip) return;
-
-    const { error } =
-        await supabaseClient
-            .from("Fahrer_Stammdaten")
-            .insert([
-                {
-                    familienname: familienname,
-                    vorname: vorname,
-                    chip: chip,
-                    status: "Aktiv"
-                }
-            ]);
-
-    if (error) {
-
-        console.log(error);
-zeigeMeldung(
-    "❌ Fehler beim Speichern"
-);
-  
-
-        return;
-    }
-
-    ladeFahrer();
-}
 async function fahrerInaktivSetzen() {
 
     const name =
