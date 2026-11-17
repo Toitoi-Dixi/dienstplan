@@ -159,7 +159,11 @@ function fahrerInfo() {
 
         }
     );
+aktualisiereFahrerInfo();
 
+document.getElementById(
+    "fahrerInfoOverlay"
+).style.display = "flex";}
 function aktualisiereFahrerInfo() {
 
     const familienname =
@@ -195,7 +199,7 @@ function schliesseFahrerInfo() {
         "fahrerInfoOverlay"
     ).style.display = "none";
 
-}}}
+}
 /* ==========================
    MODAL
 ========================== */
