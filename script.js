@@ -195,7 +195,7 @@ function schliesseFahrerInfo() {
         "fahrerInfoOverlay"
     ).style.display = "none";
 
-}
+}}}
 /* ==========================
    MODAL
 ========================== */
