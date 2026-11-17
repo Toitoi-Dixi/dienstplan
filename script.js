@@ -179,12 +179,7 @@ function aktualisiereFahrerInfo() {
         );
 
     if (!fahrer) return;
-console.log(
-    "DATEN DIV:",
-    document.getElementById(
-        "fahrerInfoDaten"
-    )
-);
+
 document.getElementById(
     "fahrerInfoDaten"
 ).innerHTML =
