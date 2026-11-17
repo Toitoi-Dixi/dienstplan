@@ -159,34 +159,34 @@ function fahrerInfo() {
 
         }
     );
-function fahrerInfo() {
 
-    const select =
+function aktualisiereFahrerInfo() {
+
+    const familienname =
         document.getElementById(
             "fahrerInfoSelect"
+        ).value;
+
+    const fahrer =
+        fahrerStammdaten.find(
+            f =>
+                f.familienname === familienname
         );
 
-    select.innerHTML = "";
-
-    fahrerStammdaten.forEach(
-        fahrer => {
-      select.appendChild(
-                option
-            );
-
-        }
-    );
-
-    aktualisiereFahrerInfo();
+    if (!fahrer) return;
 
     document.getElementById(
-        "fahrerInfoOverlay"
-    ).style.display = "flex";
+        "fahrerInfoDaten"
+    ).innerHTML =
 
-}
-    document.getElementById(
-        "fahrerInfoOverlay"
-    ).style.display = "flex";
+        "Vorname: " +
+        fahrer.vorname +
+
+        "<br><br>Nachname: " +
+        fahrer.familienname +
+
+        "<br><br>Chip: " +
+        fahrer.chip;
 
 }
 function schliesseFahrerInfo() {
