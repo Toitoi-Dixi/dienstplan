@@ -58,7 +58,20 @@ function zeigeMeldung(text) {
 /* ==========================
    FAHRER
 ========================== */
-async function fahrerHinzufuegen() {
+function fahrerHinzufuegen() {
+
+    document.getElementById(
+        "fahrerNeuOverlay"
+    ).style.display = "flex";
+
+}
+function schliesseNeuenFahrer() {
+
+    document.getElementById(
+        "fahrerNeuOverlay"
+    ).style.display = "none";
+
+}
 
     const familienname =
         prompt("Nachname:");
