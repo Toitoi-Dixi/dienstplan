@@ -90,7 +90,11 @@ async function fahrerHinzufuegen() {
     if (error) {
 
         console.log(error);
-        alert("Fehler beim Speichern");
+zeigeMeldung(
+    "❌ Fehler beim Speichern"
+);
+  
+
         return;
     }
 
@@ -117,7 +121,9 @@ async function fahrerInaktivSetzen() {
     if (error) {
 
         console.log(error);
-        alert("Fehler");
+       zeigeMeldung(
+    "❌ Fehler"
+);
         return;
     }
 
