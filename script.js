@@ -736,9 +736,50 @@ fahrerStammdaten = data.map(
 
         chip:
             fahrer.chip
+fahrerStammdaten = data.map(
+    fahrer => ({
+
+        name:
+            fahrer.vorname +
+            " " +
+            fahrer.familienname,
+
+        vorname:
+            fahrer.vorname,
+
+        familienname:
+            fahrer.familienname,
+
+        chip:
+            fahrer.chip,
+
+        telefon_privat:
+            fahrer.telefon_privat,
+
+        telefon_dienstlich:
+            fahrer.telefon_dienstlich,
+
+        email:
+            fahrer.email,
+
+        adresse:
+            fahrer.adresse,
+
+        plz:
+            fahrer.plz,
+
+        ort:
+            fahrer.ort,
+
+        qualifikationen:
+            fahrer.qualifikationen,
+
+        status:
+            fahrer.status
 
     })
 );
+
 
     ladePlan();
 }
