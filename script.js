@@ -41,17 +41,29 @@ function findeStammdaten(name) {
 ========================== */
 async function fahrerHinzufuegen() {
 
-    const name =
-        prompt("Fahrername:");
+    const familienname =
+        prompt("Nachname:");
 
-    if (!name) return;
+    if (!familienname) return;
+
+    const vorname =
+        prompt("Vorname:");
+
+    if (!vorname) return;
+
+    const chip =
+        prompt("Chipnummer:");
+
+    if (!chip) return;
 
     const { error } =
         await supabaseClient
             .from("Fahrer_Stammdaten")
             .insert([
                 {
-                    familienname: name,
+                    familienname: familienname,
+                    vorname: vorname,
+                    chip: chip,
                     status: "Aktiv"
                 }
             ]);
