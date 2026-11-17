@@ -66,6 +66,60 @@ function fahrerHinzufuegen() {
 
 }
 function schliesseNeuenFahrer() {
+    async function fahrerSpeichern() {
+
+    const familienname =
+        document.getElementById(
+            "neuFamilienname"
+        ).value;
+
+    const vorname =
+        document.getElementById(
+            "neuVorname"
+        ).value;
+
+    const chip =
+        document.getElementById(
+            "neuChip"
+        ).value;
+
+    const { error } =
+        await supabaseClient
+            .from("Fahrer_Stammdaten")
+            .insert([
+                {
+                    familienname:
+                        familienname,
+
+                    vorname:
+                        vorname,
+
+                    chip:
+                        chip,
+
+                    status:
+                        "Aktiv"
+                }
+            ]);
+
+    if (error) {
+
+        zeigeMeldung(
+            "❌ Fehler beim Speichern"
+        );
+
+        return;
+    }
+
+    schliesseNeuenFahrer();
+
+    zeigeMeldung(
+        "✅ Fahrer gespeichert"
+    );
+
+    ladeFahrer();
+
+}
 
     document.getElementById(
         "fahrerNeuOverlay"
