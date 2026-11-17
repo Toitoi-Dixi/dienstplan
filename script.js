@@ -159,11 +159,12 @@ function fahrerInfo() {
 
         }
     );
-aktualisiereFahrerInfo();
+
 
 document.getElementById(
     "fahrerInfoOverlay"
 ).style.display = "flex";}
+aktualisiereFahrerInfo();
 function aktualisiereFahrerInfo() {
 
     const familienname =
