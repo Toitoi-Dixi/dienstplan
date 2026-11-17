@@ -159,7 +159,34 @@ function fahrerInfo() {
 
         }
     );
+function fahrerInfo() {
 
+    const select =
+        document.getElementById(
+            "fahrerInfoSelect"
+        );
+
+    select.innerHTML = "";
+
+    fahrerStammdaten.forEach(
+        fahrer => {
+
+            ...
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+    aktualisiereFahrerInfo();
+
+    document.getElementById(
+        "fahrerInfoOverlay"
+    ).style.display = "flex";
+
+}
     document.getElementById(
         "fahrerInfoOverlay"
     ).style.display = "flex";
