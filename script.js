@@ -221,6 +221,7 @@ document.getElementById(
 
     "<br><br><b>Status:</b> " +
     (fahrer.status || "-");
+}
 function schliesseFahrerInfo() {
 
     document.getElementById(
