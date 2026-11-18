@@ -928,7 +928,7 @@ console.log(data);
             status:
                 fahrzeug.status
 
-        })
+        }))
        console.log("FAHRZEUGE GELADEN", fahrzeugStammdaten); 
     );
 console.log(fahrzeugStammdaten);
