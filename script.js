@@ -813,7 +813,12 @@ const bisDatum =
 
 document.getElementById("bis").value =
     bisDatum;
-   
+  ladeAbwesenheitsarten();
+ladeDienste();
+ladeFahrzeuge();
+ladeWochenmatrix();
+ladeFahrer();
+ 
 };
 async function ladeWochenmatrix() {
 
@@ -889,32 +894,8 @@ fahrerStammdaten = data.map(
 
     })
 );
-async function ladeFahrzeuge() {
-
-    const { data, error } =
-        await supabaseClient
-            .from("Fahrzeug_Stammdaten")
-            .select("*");
-
-    if (error) {
-
-        console.log(error);
-        return;
-
-    }
-
-    fahrzeugStammdaten = data;
-
+ ladePlan();
 }
-
-
-    ladePlan();
-}
-ladeAbwesenheitsarten();
-ladeDienste();
-ladeFahrzeuge();
-ladeWochenmatrix();
-ladeFahrer();
 
 
 async function ladeDienste() {
