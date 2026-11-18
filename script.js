@@ -989,14 +989,6 @@ console.log(result);
         await supabaseClient
             .from("Fahrzeug_Stammdaten")
             .select("*");
-
-    if (error) {
-
-        console.log(error);
-        alert("DATA " + JSON.stringify(data));
-        return;
-    }
-
     data.forEach(fahrzeug => {
 
         const option =
