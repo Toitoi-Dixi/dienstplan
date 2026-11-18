@@ -1048,12 +1048,20 @@ async function fahrzeugSpeichern() {
             "neuKategorie"
         ).value.trim();
 
-    if (
-        !kennzeichen ||
-        !fahrzeugnummer ||
-        !kategorie
-    )
-    const { error } =
+if (
+    !kennzeichen ||
+    !fahrzeugnummer ||
+    !kategorie
+) {
+
+    zeigeMeldung(
+        "⚠️ Alle Felder ausfüllen"
+    );
+
+    return;
+}
+
+const { error } =
     await supabaseClient
         .from("Fahrzeug_Stammdaten")
         .insert([
@@ -1082,16 +1090,7 @@ if (error) {
 
     return;
 }
-    {
-
-        zeigeMeldung(
-            "⚠️ Alle Felder ausfüllen"
-        );
-
-        return;
-    }
-
-    zeigeMeldung(
+ zeigeMeldung(
         "✅ Fahrzeug gespeichert"
     );
 
