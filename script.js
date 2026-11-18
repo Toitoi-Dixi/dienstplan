@@ -911,8 +911,8 @@ console.log("ERROR", error);
 
     }
 console.log(data);
-    fahrzeugStammdaten = result.data;
-       console.log("FAHRZEUGE GELADEN", fahrzeugStammdaten); 
+    fahrzeugStammdaten = data;
+       console.log("ARRAY", fahrzeugStammdaten); 
     
 console.log(fahrzeugStammdaten);
 }
@@ -974,9 +974,9 @@ async function ladeFahrzeuge() {
         .select("*");
 
 console.log(result);
-if (result.error) {
+if (error) {
 
-    console.log(result.error);
+    console.log(error);
     return;
 
 }
@@ -996,14 +996,14 @@ if (result.error) {
             .from("Fahrzeug_Stammdaten")
             .select("*");
 
-    if (result.error) {
+    if (error) {
 
-        console.log(result.error);
+        console.log(error);
         alert("DATA " + JSON.stringify(data));
         return;
     }
 
-    result.data.forEach(fahrzeug => {
+    data.forEach(fahrzeug => {
 
         const option =
             document.createElement(
