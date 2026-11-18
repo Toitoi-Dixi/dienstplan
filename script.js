@@ -895,14 +895,6 @@ async function ladeFahrzeuge() {
         await supabaseClient
             .from("Fahrzeug_Stammdaten")
             .select("*");
-          
-    console.log("DATA", data);
-console.log("ERROR", error);
-    alert(
-    "Datensaetze: " +
-    data.length
-);
-
 
     if (error) {
 
@@ -910,11 +902,9 @@ console.log("ERROR", error);
         return;
 
     }
-console.log(data);
+
     fahrzeugStammdaten = data;
-       console.log("ARRAY", fahrzeugStammdaten); 
-    
-console.log(fahrzeugStammdaten);
+
 }
 
 
