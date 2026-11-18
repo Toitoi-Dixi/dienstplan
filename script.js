@@ -1020,3 +1020,14 @@ async function ladeAbwesenheitsarten() {
 function fahrzeugAnlegen() {
     zeigeMeldung("Fahrzeug anlegen folgt");
 }
+function dienstAnlegen() {
+    zeigeMeldung("Dienst anlegen folgt");
+}
+
+function dienstLoeschen() {
+    zeigeMeldung("Dienst löschen folgt");
+}
+
+function fahrzeugLoeschen() {
+    zeigeMeldung("Fahrzeug löschen folgt");
+}
