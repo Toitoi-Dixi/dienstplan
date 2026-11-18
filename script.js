@@ -968,45 +968,21 @@ async function ladeDienste() {
     });
 }
 async function ladeFahrzeuge() {
+
     const result =
-    await supabaseClient
-        .from("Fahrzeug_Stammdaten")
-        .select("*");
-
-console.log(result);
-  console.log("ladeFahrzeuge gestartet");
-
-    const fahrzeugSelect =
-        document.getElementById(
-            "fahrzeugInput"
-        );
-
-    fahrzeugSelect.innerHTML = "";
-/*========================================
-   const { data, error } =
-        alert("Bis hier OK");
-    ==================================*/
         await supabaseClient
             .from("Fahrzeug_Stammdaten")
             .select("*");
-    data.forEach(fahrzeug => {
 
-        const option =
-            document.createElement(
-                "option"
-            );
+    console.log(result);
 
-        option.value =
-            fahrzeug.interne_ID;
+    console.log(
+        "ladeFahrzeuge gestartet"
+    );
 
-        option.textContent =
-            fahrzeug.interne_ID;
+    fahrzeugStammdaten =
+        result.data;
 
-        fahrzeugSelect.appendChild(
-            option
-        );
-
-    });
 }
 async function ladeAbwesenheitsarten() {
 
