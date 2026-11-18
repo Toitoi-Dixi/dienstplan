@@ -912,30 +912,6 @@ console.log("ERROR", error);
     }
 console.log(data);
     fahrzeugStammdaten = result.data;
-    ({
-
-            kennzeichen:
-                fahrzeug.kennzeichen,
-
-            interne_ID:
-                fahrzeug.interne_ID,
-
-            kategorie:
-                fahrzeug.kategorie,
-
-            ladeplaetze:
-                fahrzeug.ladeplätze,
-
-            sitzplaetze:
-                fahrzeug.sitzplätze,
-
-            anhaengerkupplung:
-                fahrzeug.anhängerkupplung,
-
-            status:
-                fahrzeug.status
-
-        })
        console.log("FAHRZEUGE GELADEN", fahrzeugStammdaten); 
     
 console.log(fahrzeugStammdaten);
