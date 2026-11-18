@@ -1165,6 +1165,7 @@ if (error) {
 
 async function fahrzeugStatusAendern() {
     await ladeFahrzeuge();
+    alert("Nach Laden");
 const select =
     document.getElementById(
         "fahrzeugStatusSelect"
