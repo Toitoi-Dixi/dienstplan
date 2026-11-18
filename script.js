@@ -346,6 +346,7 @@ function artGeaendert() {
 
     if (
         art === "Urlaub" ||
+    
         art === "Krank" ||
         art === "Zeitausgleich" ||
         art === "Frei"
@@ -897,7 +898,46 @@ fahrerStammdaten = data.map(
  ladePlan();
 }
 
+async function ladeAbwesenheitsarten() {
 
+    const artSelect =
+        document.getElementById(
+            "artInput"
+        );
+
+    artSelect.innerHTML = "";
+
+    const { data, error } =
+        await supabaseClient
+            .from("Abwesenheitsarten")
+            .select("*");
+
+    if (error) {
+
+        console.log(error);
+        return;
+
+    }
+
+    data.forEach(art => {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value =
+            art.bezeichnung;
+
+        option.textContent =
+            art.bezeichnung;
+
+        artSelect.appendChild(
+            option
+        );
+
+    });
+}
 async function ladeDienste() {
 
     const dienstSelect =
