@@ -1031,7 +1031,7 @@ function schliesseNeuesFahrzeug() {
     ).style.display = "none";
 
 }
-function fahrzeugSpeichern() {
+async function fahrzeugSpeichern() {
 
     const kennzeichen =
         document.getElementById(
@@ -1045,14 +1045,44 @@ function fahrzeugSpeichern() {
 
     const typ =
         document.getElementById(
-            "neuTyp"
+            "neuKategorie"
         ).value.trim();
 
     if (
         !kennzeichen ||
         !fahrzeugnummer ||
-        !typ
-    ) {
+        !kategorie
+    )
+    const { error } =
+    await supabaseClient
+        .from("Fahrzeug_Stammdaten")
+        .insert([
+            {
+                kennzeichen:
+                    kennzeichen,
+
+                interne_ID:
+                    fahrzeugnummer,
+
+                kategorie:
+                    kategorie,
+
+                status:
+                    "Aktiv"
+            }
+        ]);
+
+if (error) {
+
+    console.log(error);
+
+    zeigeMeldung(
+        "❌ Fehler beim Speichern"
+    );
+
+    return;
+}
+    {
 
         zeigeMeldung(
             "⚠️ Alle Felder ausfüllen"
@@ -1074,7 +1104,7 @@ function fahrzeugSpeichern() {
     ).value = "";
 
     document.getElementById(
-        "neuTyp"
+        "neuKategorie"
     ).value = "";
 
     schliesseNeuesFahrzeug();
