@@ -1043,7 +1043,7 @@ async function fahrzeugSpeichern() {
             "neuFahrzeugnummer"
         ).value.trim();
 
-    const typ =
+    const kategorie =
         document.getElementById(
             "neuKategorie"
         ).value.trim();
