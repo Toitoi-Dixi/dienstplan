@@ -1017,3 +1017,6 @@ async function ladeAbwesenheitsarten() {
 
     });
 }
+function fahrzeugAnlegen() {
+    zeigeMeldung("Fahrzeug anlegen folgt");
+}
