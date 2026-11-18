@@ -911,8 +911,8 @@ console.log("ERROR", error);
 
     }
 console.log(data);
-    fahrzeugStammdaten = result.data.map(
-        fahrzeug => ({
+    fahrzeugStammdaten = result.data;
+    ({
 
             kennzeichen:
                 fahrzeug.kennzeichen,
