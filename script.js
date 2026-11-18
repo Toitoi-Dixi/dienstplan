@@ -992,6 +992,14 @@ async function ladeDienste() {
     });
 }
 async function ladeFahrzeuge() {
+    const result =
+    await supabaseClient
+        .from("Fahrzeug_Stammdaten")
+        .select("*");
+
+console.log(result);
+
+return;
         console.log("ladeFahrzeuge gestartet");
 
     const fahrzeugSelect =
@@ -1000,9 +1008,10 @@ async function ladeFahrzeuge() {
         );
 
     fahrzeugSelect.innerHTML = "";
-
-    const { data, error } =
+/*========================================
+   const { data, error } =
         alert("Bis hier OK");
+    ==================================*/
         await supabaseClient
             .from("Fahrzeug_Stammdaten")
             .select("*");
