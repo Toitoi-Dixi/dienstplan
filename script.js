@@ -1002,6 +1002,7 @@ async function ladeFahrzeuge() {
     fahrzeugSelect.innerHTML = "";
 
     const { data, error } =
+        alert("Bis hier OK");
         await supabaseClient
             .from("Fahrzeug_Stammdaten")
             .select("*");
@@ -1009,6 +1010,7 @@ async function ladeFahrzeuge() {
     if (error) {
 
         console.log(error);
+        alert("DATA " + JSON.stringify(data));
         return;
     }
 
