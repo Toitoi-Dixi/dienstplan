@@ -1153,7 +1153,7 @@ if (error) {
     schliesseNeuesFahrzeug();
 
 }
-function fahrzeugLoeschen() {
+function fahrzeugStatusÄnern() {
 
     document.getElementById(
         "fahrzeugStatusOverlay"
