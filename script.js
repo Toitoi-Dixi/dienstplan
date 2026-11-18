@@ -980,6 +980,7 @@ fahrzeugStammdaten.forEach(
 
     }
 );
+}
 function fahrzeugAnlegen() {
 
     document.getElementById(
