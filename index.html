@@ -214,6 +214,30 @@ Schließen
     </div>
 </div>
 </div>
+        <div id="fahrzeugStatusOverlay"
+        class="modalOverlay">
+        <div class="modal">
+            <h2>Fahrzeugstatus ändern</h2>
+            <label>Fahrzeug</label>
+            <select id ="fahrzeugStatusSelect"></select>
+        <label>Status</label>
+             <select id ="fahrzeugStatusNeu">
+            <option>Aktiv</option>
+            <option>Werkstatt</option>
+            <option>Inaktiv</option>
+        </select>
+    <div class="modalButtons">
+        <button
+            onclick="fahrzeugStatusSpeichern()">
+            Speichern
+        </button>
+        <button
+            onclick="schliesseFahrzeugStatus()">
+            Abbrechen
+        </button>
+    </div>
+</div>
+</div>
     <div id="meldung"></div>
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
