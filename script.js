@@ -1033,9 +1033,49 @@ function schliesseNeuesFahrzeug() {
 }
 function fahrzeugSpeichern() {
 
+    const kennzeichen =
+        document.getElementById(
+            "neuKennzeichen"
+        ).value.trim();
+
+    const fahrzeugnummer =
+        document.getElementById(
+            "neuFahrzeugnummer"
+        ).value.trim();
+
+    const typ =
+        document.getElementById(
+            "neuTyp"
+        ).value.trim();
+
+    if (
+        !kennzeichen ||
+        !fahrzeugnummer ||
+        !typ
+    ) {
+
+        zeigeMeldung(
+            "⚠️ Alle Felder ausfüllen"
+        );
+
+        return;
+    }
+
     zeigeMeldung(
-        "Fahrzeug gespeichert"
+        "✅ Fahrzeug gespeichert"
     );
+
+    document.getElementById(
+        "neuKennzeichen"
+    ).value = "";
+
+    document.getElementById(
+        "neuFahrzeugnummer"
+    ).value = "";
+
+    document.getElementById(
+        "neuTyp"
+    ).value = "";
 
     schliesseNeuesFahrzeug();
 
