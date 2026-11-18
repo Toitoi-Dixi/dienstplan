@@ -17,6 +17,7 @@ let aktuellesDatum = "";
 ========================== */
 
 let fahrerStammdaten = [];
+let fahrzeugStammdaten = [];
 let wochenmatrix = [];
 
 let plan = {};
@@ -888,6 +889,49 @@ fahrerStammdaten = data.map(
 
     })
 );
+async function ladeFahrzeuge() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("Fahrzeug_Stammdaten")
+            .select("*")
+            .eq("status", "Aktiv");
+
+    if (error) {
+
+        console.log(error);
+        return;
+
+    }
+
+    fahrzeugStammdaten = data.map(
+        fahrzeug => ({
+
+            kennzeichen:
+                fahrzeug.kennzeichen,
+
+            interne_ID:
+                fahrzeug.interne_ID,
+
+            kategorie:
+                fahrzeug.kategorie,
+
+            ladeplaetze:
+                fahrzeug.ladeplätze,
+
+            sitzplaetze:
+                fahrzeug.sitzplätze,
+
+            anhaengerkupplung:
+                fahrzeug.anhängerkupplung,
+
+            status:
+                fahrzeug.status
+
+        })
+    );
+console.log(fahrzeugStammdaten);
+}
 
 
     ladePlan();
