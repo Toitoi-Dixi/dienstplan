@@ -1153,7 +1153,29 @@ if (error) {
     schliesseNeuesFahrzeug();
 
 }
+function fahrzeugLoeschen() {
 
+    document.getElementById(
+        "fahrzeugStatusOverlay"
+    ).style.display = "flex";
+
+}
+function schliesseFahrzeugStatus() {
+
+    document.getElementById(
+        "fahrzeugStatusOverlay"
+    ).style.display = "none";
+
+}
+function fahrzeugStatusSpeichern() {
+
+    zeigeMeldung(
+        "Statusänderung folgt"
+    );
+
+    schliesseFahrzeugStatus();
+
+}
 function dienstAnlegen() {
     zeigeMeldung("Dienst anlegen folgt");
 }
