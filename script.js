@@ -1020,7 +1020,7 @@ if (result.error) {
             .from("Fahrzeug_Stammdaten")
             .select("*");
 
-    if (error) {
+    if (result.error) {
 
         console.log(result.error);
         alert("DATA " + JSON.stringify(data));
