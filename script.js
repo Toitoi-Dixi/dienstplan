@@ -951,31 +951,17 @@ async function ladeFahrzeuge() {
         "ladeFahrzeuge gestartet"
     );
 
-    fahrzeugStammdaten =
-        result.data;
+    fahrzeugStammdaten = data;
 
-}
-async function ladeAbwesenheitsarten() {
+const fahrzeugSelect =
+    document.getElementById(
+        "fahrzeugInput"
+    );
 
-    const artSelect =
-        document.getElementById(
-            "artInput"
-        );
+fahrzeugSelect.innerHTML = "";
 
-    artSelect.innerHTML = "";
-
-    const { data, error } =
-        await supabaseClient
-            .from("Abwesenheitsarten")
-            .select("*");
-
-    if (error) {
-
-        console.log(error);
-        return;
-    }
-
-    data.forEach(art => {
+fahrzeugStammdaten.forEach(
+    fahrzeug => {
 
         const option =
             document.createElement(
@@ -983,17 +969,17 @@ async function ladeAbwesenheitsarten() {
             );
 
         option.value =
-            art.Bezeichnung;
+            fahrzeug.interne_ID;
 
         option.textContent =
-            art.Bezeichnung;
+            fahrzeug.interne_ID;
 
-        artSelect.appendChild(
+        fahrzeugSelect.appendChild(
             option
         );
 
-    });
-}
+    }
+);
 function fahrzeugAnlegen() {
 
     document.getElementById(
