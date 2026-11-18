@@ -1031,6 +1031,16 @@ function schliesseNeuesFahrzeug() {
     ).style.display = "none";
 
 }
+function fahrzeugSpeichern() {
+
+    zeigeMeldung(
+        "Fahrzeug gespeichert"
+    );
+
+    schliesseNeuesFahrzeug();
+
+}
+
 function dienstAnlegen() {
     zeigeMeldung("Dienst anlegen folgt");
 }
