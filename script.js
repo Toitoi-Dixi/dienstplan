@@ -985,6 +985,7 @@ async function ladeDienste() {
     });
 }
 async function ladeFahrzeuge() {
+        console.log("ladeFahrzeuge gestartet");
 
     const fahrzeugSelect =
         document.getElementById(
