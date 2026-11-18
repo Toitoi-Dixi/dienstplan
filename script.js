@@ -1154,7 +1154,9 @@ if (error) {
     schliesseNeuesFahrzeug();
 
 }
-function fahrzeugStatusAendern() {
+
+async function fahrzeugStatusAendern() {
+    await ladeFahrzeuge();
 const select =
     document.getElementById(
         "fahrzeugStatusSelect"
