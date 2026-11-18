@@ -896,6 +896,8 @@ async function ladeFahrzeuge() {
             .from("Fahrzeug_Stammdaten")
             .select("*")
             .eq("status", "Aktiv");
+    console.log("DATA", data);
+console.log("ERROR", error);
 
     if (error) {
 
