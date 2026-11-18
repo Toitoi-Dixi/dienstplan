@@ -898,6 +898,11 @@ async function ladeFahrzeuge() {
           
     console.log("DATA", data);
 console.log("ERROR", error);
+    alert(
+    "Datensaetze: " +
+    data.length
+);
+
 
     if (error) {
 
