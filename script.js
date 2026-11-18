@@ -974,13 +974,7 @@ async function ladeFahrzeuge() {
         .select("*");
 
 console.log(result);
-if (error) {
-
-    console.log(error);
-    return;
-
-}
-        console.log("ladeFahrzeuge gestartet");
+  console.log("ladeFahrzeuge gestartet");
 
     const fahrzeugSelect =
         document.getElementById(
