@@ -911,7 +911,7 @@ console.log("ERROR", error);
 
     }
 console.log(data);
-    fahrzeugStammdaten = data.map(
+    fahrzeugStammdaten = result.data.map(
         fahrzeug => ({
 
             kennzeichen:
@@ -998,8 +998,12 @@ async function ladeFahrzeuge() {
         .select("*");
 
 console.log(result);
+if (result.error) {
 
-return;
+    console.log(result.error);
+    return;
+
+}
         console.log("ladeFahrzeuge gestartet");
 
     const fahrzeugSelect =
