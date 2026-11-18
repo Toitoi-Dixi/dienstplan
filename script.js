@@ -1154,7 +1154,34 @@ if (error) {
 
 }
 function fahrzeugStatusAendern() {
+const select =
+    document.getElementById(
+        "fahrzeugStatusSelect"
+    );
 
+select.innerHTML = "";
+    fahrzeugStammdaten.forEach(
+    fahrzeug => {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value =
+            fahrzeug.interne_ID;
+
+        option.text =
+            fahrzeug.kennzeichen +
+            " - " +
+            fahrzeug.interne_ID;
+
+        select.appendChild(
+            option
+        );
+
+    }
+);
     document.getElementById(
         "fahrzeugStatusOverlay"
     ).style.display = "flex";
