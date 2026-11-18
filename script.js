@@ -903,7 +903,7 @@ async function ladeFahrzeuge() {
         return;
 
     }
-
+console.log(data);
     fahrzeugStammdaten = data.map(
         fahrzeug => ({
 
