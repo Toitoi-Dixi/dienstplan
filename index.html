@@ -184,6 +184,34 @@ Schließen
         </button>
     </div>
 </div>
+           <div id="fahrzeugNeuOverlay"
+        class="modalOverlay">
+        <div class="modal">
+            <h2>Fahrzeug anlegen</h2>
+            <label>Kennzeichen</label>
+            <input
+                type="text"
+                id="neuFamilienname">
+            <label>Fahrzeugnummer</label>
+            <input
+                type="text"
+                id="neuVorname">
+    <label>Typ</label>
+
+    <input
+        type= "text"
+        id="neuTyp">
+    <div class="modalButtons">
+        <button
+            onclick="fahrzeugSpeichern()">
+            Speichern
+        </button>
+        <button
+            onclick="schliesseNeuesFahrzeug()">
+            Abbrechen
+        </button>
+    </div>
+</div>
 </div>
     <div id="meldung"></div>
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
