@@ -1018,7 +1018,18 @@ async function ladeAbwesenheitsarten() {
     });
 }
 function fahrzeugAnlegen() {
-    zeigeMeldung("Fahrzeug anlegen folgt");
+
+    document.getElementById(
+        "fahrzeugNeuOverlay"
+    ).style.display = "flex";
+
+}
+function schliesseNeuesFahrzeug() {
+
+    document.getElementById(
+        "fahrzeugNeuOverlay"
+    ).style.display = "none";
+
 }
 function dienstAnlegen() {
     zeigeMeldung("Dienst anlegen folgt");
