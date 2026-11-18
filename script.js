@@ -894,8 +894,8 @@ async function ladeFahrzeuge() {
     const { data, error } =
         await supabaseClient
             .from("Fahrzeug_Stammdaten")
-            .select("*")
-            .eq("status", "Aktiv");
+            .select("*");
+          
     console.log("DATA", data);
 console.log("ERROR", error);
 
