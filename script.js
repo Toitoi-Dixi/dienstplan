@@ -930,7 +930,7 @@ console.log(data);
 
         }))
        console.log("FAHRZEUGE GELADEN", fahrzeugStammdaten); 
-    );
+    
 console.log(fahrzeugStammdaten);
 }
 
