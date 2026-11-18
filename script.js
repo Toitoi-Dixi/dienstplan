@@ -1022,12 +1022,12 @@ if (result.error) {
 
     if (error) {
 
-        console.log(error);
+        console.log(result.error);
         alert("DATA " + JSON.stringify(data));
         return;
     }
 
-    data.forEach(fahrzeug => {
+    result.data.forEach(fahrzeug => {
 
         const option =
             document.createElement(
