@@ -19,6 +19,7 @@ let aktuellesDatum = "";
 let fahrerStammdaten = [];
 let fahrzeugStammdaten = [];
 let wochenmatrix = [];
+let abwesenheitsarten = [];
 
 let plan = {};
 
@@ -30,9 +31,17 @@ function getKey(fahrerName, datum) {
     return fahrerName + "_" + datum;
 }
 
-function findeStammdaten(name) {
+function findeStammdaten(name) 
+function istAbwesenheit(art) {
 
-    return fahrerStammdaten.find(function (f) {
+    return abwesenheitsarten.some(
+        a =>
+            a.bezeichnung === art
+    );
+
+}
+
+{return fahrerStammdaten.find(function (f) {
         return f.name === name;
     });
 }
@@ -343,14 +352,10 @@ function artGeaendert() {
 
     const block =
         document.getElementById("dienstBlock");
-
-    if (
-        art === "Urlaub" ||
-    
-        art === "Krank" ||
-        art === "Zeitausgleich" ||
-        art === "Frei"
-    ) {
+if (
+    istAbwesenheit(art)
+)
+   {
         block.style.display = "none";
     }
     else {
@@ -918,7 +923,7 @@ async function ladeAbwesenheitsarten() {
         return;
 
     }
-
+abwesenheitsarten = data;
     data.forEach(art => {
 
         const option =
