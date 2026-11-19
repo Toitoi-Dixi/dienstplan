@@ -542,7 +542,7 @@ let dienstName = eintrag?.dienst;
     istAbwesenheit(
         eintrag.art
     )
-) 
+) }
   else if (
     eintrag.art === "Dienst" &&
     wmEintrag &&
@@ -556,10 +556,7 @@ let dienstName = eintrag?.dienst;
 
 }     
        {
-
-          
-
-            const stamm =
+           const stamm =
                 findeStammdaten(
                     fahrerName
                 );
