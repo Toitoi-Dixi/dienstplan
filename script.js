@@ -1044,23 +1044,7 @@ async function ladeFahrer() {
         console.log(error);
         return;
     }
-async function ladeAlleFahrer() {
 
-    const { data, error } =
-        await supabaseClient
-            .from("Fahrer_Stammdaten")
-            .select("*");
-
-    if (error) {
-
-        console.log(error);
-        return;
-
-    }
-
-    alleFahrer = data;
-
-}
     
 fahrerStammdaten = data.map(
     fahrer => ({
@@ -1107,7 +1091,23 @@ fahrerStammdaten = data.map(
 );
 
 }
+async function ladeAlleFahrer() {
 
+    const { data, error } =
+        await supabaseClient
+            .from("Fahrer_Stammdaten")
+            .select("*");
+
+    if (error) {
+
+        console.log(error);
+        return;
+
+    }
+
+    alleFahrer = data;
+
+}
 async function ladeAbwesenheitsarten() {
 
     const artSelect =
