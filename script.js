@@ -240,10 +240,6 @@ function fahrerStatusAendern() {
         );
 
     select.innerHTML = "";
-console.log(
-    "DROPDOWN",
-    alleFahrer
-);
     alleFahrer.forEach(
         fahrer => {
 
@@ -1043,7 +1039,8 @@ async function ladeFahrer() {
     await supabaseClient
         .from("Fahrer_Stammdaten")
         .select("*")
-        .eq("status", "Aktiv");
+        .eq("status", "Aktiv")
+       .order("sortierung");
  if (error) {
 
         console.log(error);
@@ -1101,7 +1098,8 @@ async function ladeAlleFahrer() {
     const { data, error } =
         await supabaseClient
             .from("Fahrer_Stammdaten")
-            .select("*");
+            .select("*")
+            .order("sortierung");
 
     if (error) {
 
@@ -1109,10 +1107,6 @@ async function ladeAlleFahrer() {
         return;
 
     }
-console.log(
-    "ALLE FAHRER",
-    data
-);
     alleFahrer = data;
 
 }
