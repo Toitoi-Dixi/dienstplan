@@ -38,8 +38,8 @@
          <button onclick="fahrerInfo()">
             + Fahrer Info
         </button>
-        <button onclick="fahrerInaktivSetzen()">
-            Fahrer inaktiv setzen
+        <button onclick="fahrerStatusAendern()">
+            Fahrer Status aendern
         </button>
         <hr>
           <button onclick="fuhrpark()">
@@ -238,6 +238,30 @@ Schließen
     </div>
 </div>
 </div>
+
+     <div id="fahrerStatusOverlay"
+        class="modalOverlay">
+        <div class="modal">
+            <h2>Fahrerstatus ändern</h2>
+            <label>Fahrer</label>
+            <select id ="fahrerStatusSelect"></select>
+        <label>Status</label>
+             <select id ="fahrerStatusNeu">
+            <option>Aktiv</option>
+            <option>Inaktiv</option>
+        </select>
+    <div class="modalButtons">
+        <button
+            onclick="fahrerStatusSpeichern()">
+            Speichern
+        </button>
+        <button
+            onclick="schliesseFahrerStatus()">
+            Abbrechen
+        </button>
+    </div>
+</div>
+</div>  
     <div id="meldung"></div>
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 
