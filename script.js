@@ -267,6 +267,58 @@ function fahrerStatusAendern() {
     ).style.display = "flex";
 
 }
+function schliesseFahrerStatus() {
+
+    document.getElementById(
+        "fahrerStatusOverlay"
+    ).style.display = "none";
+
+}
+async function fahrerStatusSpeichern() {
+
+    const fahrerName =
+        document.getElementById(
+            "fahrerStatusSelect"
+        ).value;
+
+    const neuerStatus =
+        document.getElementById(
+            "fahrerStatusNeu"
+        ).value;
+
+    const { error } =
+        await supabaseClient
+            .from("Fahrer_Stammdaten")
+            .update({
+                status: neuerStatus
+            })
+            .eq(
+                "familienname",
+                fahrerName
+            );
+
+    if (error) {
+
+        console.log(error);
+
+        zeigeMeldung(
+            "❌ Fehler"
+        );
+
+        return;
+
+    }
+
+    await ladeFahrer();
+
+    zeigeMeldung(
+        "✅ Status geändert"
+    );
+
+    schliesseFahrerStatus();
+
+}
+
 function fahrerInfo() {
 
     const select =
