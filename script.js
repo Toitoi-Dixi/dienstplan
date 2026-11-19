@@ -541,26 +541,33 @@ function offeneDiensteErmitteln() {
         }
 
         if (
-            istAbwesenheit(
-                eintrag.art
-            )
-        ) {
+    istAbwesenheit(
+        eintrag.art
+    )
+) {
 
-            const stamm =
-                findeStammdaten(
-                    fahrerName
-                );
+    if (wmEintrag?.dienst) {
 
-            if (stamm) {
+        liste.push({
+            datum: datum,
+            dienst: wmEintrag.dienst
+        });
 
-                liste.push({
-                    datum: datum,
-                    dienst: dienstName
-                });
+    }
 
-            }
+    if (
+        eintrag.dienst &&
+        eintrag.dienst !== wmEintrag?.dienst
+    ) {
 
-        }
+        liste.push({
+            datum: datum,
+            dienst: eintrag.dienst
+        });
+
+    }
+
+}
         else if (
             eintrag.art === "Dienst" &&
             wmEintrag &&
