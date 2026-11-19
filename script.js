@@ -558,7 +558,7 @@ let dienstName = eintrag?.dienst;
 
     }
 
-}
+}}
 else if (
     eintrag.art === "Dienst" &&
     wmEintrag &&
