@@ -286,13 +286,28 @@ async function fahrerStatusSpeichern() {
         document.getElementById(
             "fahrerStatusNeu"
         ).value;
+    const statusDatum =
+        document.getElementById(
+            "fahrerStatusDatum").value;
 
     const { error } =
         await supabaseClient
             .from("Fahrer_Stammdaten")
             .update({
-                status: neuerStatus
-            })
+
+    status: neuerStatus,
+
+    aktiv_ab:
+        neuerStatus === "Aktiv"
+            ? statusDatum
+            : null,
+
+    inaktiv_ab:
+        neuerStatus === "Inaktiv"
+            ? statusDatum
+            : null
+
+})
             .eq(
                 "familienname",
                 fahrerName
