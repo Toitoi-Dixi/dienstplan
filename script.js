@@ -886,7 +886,7 @@ async function ladePlanung() {
    START
 ========================== */
 
-window.onload = function () {
+window.onload = async function () {
 
 const heute = new Date();
 
@@ -911,13 +911,13 @@ const bisDatum =
 
 document.getElementById("bis").value =
     bisDatum;
-  ladeAbwesenheitsarten();
-ladeDienste();
-ladeFahrzeuge();
-ladeWochenmatrix();
-ladePlanung();
-ladeFahrer();
- 
+ await ladeAbwesenheitsarten();
+await ladeDienste();
+await ladeFahrzeuge();
+await ladeWochenmatrix();
+await ladePlanung();
+await ladeFahrer();
+ ladePlan ();
 };
 async function ladeWochenmatrix() {
 
@@ -927,7 +927,7 @@ async function ladeWochenmatrix() {
             .select("*");
 
     wochenmatrix = data;
-    ladePlan();
+ 
 
     if (error) {
 
@@ -993,7 +993,7 @@ fahrerStammdaten = data.map(
 
     })
 );
- ladePlan();
+
 }
 
 async function ladeAbwesenheitsarten() {
