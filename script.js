@@ -31,7 +31,7 @@ function getKey(fahrerName, datum) {
     return fahrerName + "_" + datum;
 }
 
-function findeStammdaten(name);
+function findeStammdaten(name)
 
 function istAbwesenheit(art) {
 
