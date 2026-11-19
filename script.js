@@ -984,26 +984,16 @@ async function ladeFahrzeuge() {
         await supabaseClient
             .from("Fahrzeug_Stammdaten")
             .select("*");
-
-    console.log(result);
-
-    console.log(
-        "ladeFahrzeuge gestartet"
-    );
-
-    fahrzeugStammdaten = data;
-
+ fahrzeugStammdaten = result.data;
 const fahrzeugSelect =
     document.getElementById(
         "fahrzeugInput"
     );
-
 fahrzeugSelect.innerHTML = "";
-
 fahrzeugStammdaten.forEach(
     fahrzeug => {
 
-        const option =
+     const option =
             document.createElement(
                 "option"
             );
