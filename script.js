@@ -813,7 +813,51 @@ const datum =
 
     offeneDiensteAnzeigen();
 }
+async function ladeWochenmatrix() {
 
+    ...
+}
+
+async function ladePlanung() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("Planung")
+            .select("*");
+
+    if (error) {
+
+        console.log(error);
+        return;
+
+    }
+
+    plan = {};
+
+    data.forEach(eintrag => {
+
+        const key =
+            getKey(
+                eintrag.fahrer,
+                eintrag.datum
+            );
+
+        plan[key] = {
+
+            art:
+                eintrag.art,
+
+            dienst:
+                eintrag.dienst || "",
+
+            fahrzeug:
+                eintrag.fahrzeug || ""
+
+        };
+
+    });
+
+}
 /* ==========================
    START
 ========================== */
@@ -847,6 +891,7 @@ document.getElementById("bis").value =
 ladeDienste();
 ladeFahrzeuge();
 ladeWochenmatrix();
+ladePlanung();
 ladeFahrer();
  
 };
