@@ -922,6 +922,20 @@ async function ladeAbwesenheitsarten() {
 
     }
 abwesenheitsarten = data;
+    const dienstOption =
+    document.createElement(
+        "option"
+    );
+
+dienstOption.value =
+    "Dienst";
+
+dienstOption.textContent =
+    "Dienst";
+
+artSelect.appendChild(
+    dienstOption
+);
     data.forEach(art => {
 
         const option =
