@@ -256,7 +256,9 @@ console.log(
                 fahrer.familienname;
 
             option.textContent =
-                fahrer.name;
+    fahrer.vorname +
+    " " +
+    fahrer.familienname;
 
             select.appendChild(
                 option
