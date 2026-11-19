@@ -240,7 +240,10 @@ function fahrerStatusAendern() {
         );
 
     select.innerHTML = "";
-
+console.log(
+    "DROPDOWN",
+    alleFahrer
+);
     alleFahrer.forEach(
         fahrer => {
 
@@ -1104,7 +1107,10 @@ async function ladeAlleFahrer() {
         return;
 
     }
-
+console.log(
+    "ALLE FAHRER",
+    data
+);
     alleFahrer = data;
 
 }
