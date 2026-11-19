@@ -813,10 +813,6 @@ const datum =
 
     offeneDiensteAnzeigen();
 }
-async function ladeWochenmatrix() {
-
-    ...
-}
 
 async function ladePlanung() {
 
