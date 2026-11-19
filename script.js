@@ -15,7 +15,7 @@ let aktuellesDatum = "";
 /* ==========================
    STAMMDATEN
 ========================== */
-
+let alleFahrer = [];
 let fahrerStammdaten = [];
 let fahrzeugStammdaten = [];
 let wochenmatrix = [];
@@ -241,7 +241,7 @@ function fahrerStatusAendern() {
 
     select.innerHTML = "";
 
-    fahrerStammdaten.forEach(
+    alleFahrer.forEach(
         fahrer => {
 
             const option =
@@ -1011,6 +1011,7 @@ await ladeFahrzeuge();
 await ladeWochenmatrix();
 await ladePlanung();
 await ladeFahrer();
+await ladeAlleFahrer();
  ladePlan ();
 };
 async function ladeWochenmatrix() {
@@ -1043,7 +1044,24 @@ async function ladeFahrer() {
         console.log(error);
         return;
     }
+async function ladeAlleFahrer() {
 
+    const { data, error } =
+        await supabaseClient
+            .from("Fahrer_Stammdaten")
+            .select("*");
+
+    if (error) {
+
+        console.log(error);
+        return;
+
+    }
+
+    alleFahrer = data;
+
+}
+    
 fahrerStammdaten = data.map(
     fahrer => ({
 
