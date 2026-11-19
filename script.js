@@ -32,7 +32,11 @@ function getKey(fahrerName, datum) {
 }
 
 function findeStammdaten(name)
-
+{
+    return fahrerStammdaten.find(function (f) {
+        return f.name === name;
+    });
+}
 function istAbwesenheit(art) {
 
     return abwesenheitsarten.some(
@@ -40,11 +44,6 @@ function istAbwesenheit(art) {
             a.bezeichnung === art
     );
 
-}
-
-{return fahrerStammdaten.find(function (f) {
-        return f.name === name;
-    });
 }
 function zeigeMeldung(text) {
 
