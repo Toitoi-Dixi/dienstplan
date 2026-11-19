@@ -571,20 +571,6 @@ else if (
     });
 
 }
-       {
-           const stamm =
-                findeStammdaten(
-                    fahrerName
-                );
-
-if (stamm) {
-    liste.push({
-        datum: datum,
-        dienst: dienstName
-    });
-}}}
-    return liste;
-}
 
 function offeneDiensteAnzeigen() {
 
