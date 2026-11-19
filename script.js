@@ -479,6 +479,7 @@ async function speichernZelle() {
                     fahrzeug
             }
         ]);
+   console.log("PLAN ERROR", error);
 if (error) {
 
     console.log(error);
