@@ -512,13 +512,11 @@ let dienstName = eintrag?.dienst;
     dienstName =
         wmEintrag?.dienst || "";
 }    
-        if (
-            eintrag.art === "Urlaub" ||
-            eintrag.art === "Frei" ||
-            eintrag.art === "Krank" ||
-            eintrag.art === "Todesfall" ||
-            eintrag.art === "Zeitausgleich"
-        ) {
+       if (
+    istAbwesenheit(
+        eintrag.art
+    )
+)  {
 
           
 
