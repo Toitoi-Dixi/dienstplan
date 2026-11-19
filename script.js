@@ -542,7 +542,20 @@ let dienstName = eintrag?.dienst;
     istAbwesenheit(
         eintrag.art
     )
-)  {
+) 
+  else if (
+    eintrag.art === "Dienst" &&
+    wmEintrag &&
+    wmEintrag.dienst !== eintrag.dienst
+) {
+
+    liste.push({
+        datum: datum,
+        dienst: wmEintrag.dienst
+    });
+
+}     
+       {
 
           
 
