@@ -425,7 +425,7 @@ function schliessenModal() {
     ).style.display = "none";
 }
 
-function speichernZelle() {
+async function speichernZelle() {
 
     const art =
         document.getElementById(
@@ -460,12 +460,42 @@ function speichernZelle() {
         alterEintrag?.fahrzeug ||
         ""
 }; 
+}
+const { error } =
+    await supabaseClient
+        .from("Planung")
+        .upsert([
+            {
+                fahrer:
+                    aktuellerFahrer,
 
+                datum:
+                    aktuellesDatum,
+
+                art:
+                    art,
+
+                dienst:
+                    dienst,
+
+                fahrzeug:
+                    fahrzeug
+            }
+        ]);
+if (error) {
+
+    console.log(error);
+
+    zeigeMeldung(
+        "❌ Fehler beim Speichern"
+    );
+
+    return;
+
+}
     schliessenModal();
 
     ladePlan();
-}
-
 /* ==========================
    OFFENE DIENSTE
 ========================== */
