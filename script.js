@@ -495,7 +495,6 @@ if (error) {
 /* ==========================
    OFFENE DIENSTE
 ========================== */
-
 function offeneDiensteErmitteln() {
 
     const liste = [];
@@ -504,73 +503,83 @@ function offeneDiensteErmitteln() {
 
         const eintrag = plan[key];
 
-          const fahrerName =
-                key.split("_")[0];
+        const fahrerName =
+            key.split("_")[0];
 
-            const datum =
-                key.split("_")[1];
+        const datum =
+            key.split("_")[1];
 
+        const datumObj =
+            new Date(datum);
 
-let dienstName = eintrag?.dienst;
-    if (!dienstName) {
+        const wochentag =
+            [
+                "Sonntag",
+                "Montag",
+                "Dienstag",
+                "Mittwoch",
+                "Donnerstag",
+                "Freitag",
+                "Samstag"
+            ][datumObj.getDay()];
 
-    const datumObj =
-        new Date(datum);
+        const wmEintrag =
+            wochenmatrix.find(
+                w =>
+                    w.fahrer === fahrerName &&
+                    w.wochentag === wochentag
+            );
 
-    const wochentag =
-        [
-            "Sonntag",
-            "Montag",
-            "Dienstag",
-            "Mittwoch",
-            "Donnerstag",
-            "Freitag",
-            "Samstag"
-        ][datumObj.getDay()];
+        let dienstName =
+            eintrag?.dienst;
 
-    const wmEintrag =
-        wochenmatrix.find(
-            w =>
-                w.fahrer === fahrerName &&
-                w.wochentag === wochentag
-        );
+        if (!dienstName) {
 
-    dienstName =
-        wmEintrag?.dienst || "";
-}    
-  if (
-    istAbwesenheit(
-        eintrag.art
-    )
-) {
+            dienstName =
+                wmEintrag?.dienst || "";
 
-    const stamm =
-        findeStammdaten(
-            fahrerName
-        );
+        }
 
-    if (stamm) {
+        if (
+            istAbwesenheit(
+                eintrag.art
+            )
+        ) {
 
-        liste.push({
-            datum: datum,
-            dienst: dienstName
-        });
+            const stamm =
+                findeStammdaten(
+                    fahrerName
+                );
+
+            if (stamm) {
+
+                liste.push({
+                    datum: datum,
+                    dienst: dienstName
+                });
+
+            }
+
+        }
+        else if (
+            eintrag.art === "Dienst" &&
+            wmEintrag &&
+            wmEintrag.dienst !== eintrag.dienst
+        ) {
+
+            liste.push({
+                datum: datum,
+                dienst: wmEintrag.dienst
+            });
+
+        }
 
     }
 
-}
-else if (
-    eintrag.art === "Dienst" &&
-    wmEintrag &&
-    wmEintrag.dienst !== eintrag.dienst
-) {
-
-    liste.push({
-        datum: datum,
-        dienst: wmEintrag.dienst
-    });
+    return liste;
 
 }
+
 
 function offeneDiensteAnzeigen() {
 
