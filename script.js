@@ -327,6 +327,9 @@ function fahrerInfo() {
         );
 
     select.innerHTML = "";
+    document.getElementById(
+    "fahrerInfoDaten"
+).innerHTML = "";
     
 const leerOption =
     document.createElement(
@@ -426,6 +429,10 @@ function schliesseFahrerInfo() {
     document.getElementById(
         "fahrerInfoOverlay"
     ).style.display = "none";
+
+    document.getElementById(
+        "fahrerInfoDaten"
+    ).innerHTML = "";
 
 }
 /* ==========================
