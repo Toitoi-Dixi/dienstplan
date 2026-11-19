@@ -1149,10 +1149,44 @@ function schliesseFahrzeugStatus() {
     ).style.display = "none";
 
 }
-function fahrzeugStatusSpeichern() {
+async function fahrzeugStatusSpeichern() {
+
+    const fahrzeugID =
+        document.getElementById(
+            "fahrzeugStatusSelect"
+        ).value;
+
+    const neuerStatus =
+        document.getElementById(
+            "fahrzeugStatusNeu"
+        ).value;
+
+    const { error } =
+        await supabaseClient
+            .from("Fahrzeug_Stammdaten")
+            .update({
+                status: neuerStatus
+            })
+            .eq(
+                "interne_ID",
+                fahrzeugID
+            );
+
+    if (error) {
+
+        console.log(error);
+
+        zeigeMeldung(
+            "❌ Fehler"
+        );
+
+        return;
+    }
+
+    await ladeFahrzeuge();
 
     zeigeMeldung(
-        "Statusänderung folgt"
+        "✅ Status geändert"
     );
 
     schliesseFahrzeugStatus();
