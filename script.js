@@ -443,9 +443,7 @@ async function speichernZelle() {
     ).value;
 
     const key =
-        getKey(
-            aktuellerFahrer,
-            aktuellesDatum
+        getKey(aktuellerFahrer, aktuellesDatum
         );
     const alterEintrag =
     plan[key];
@@ -460,8 +458,7 @@ async function speichernZelle() {
         alterEintrag?.fahrzeug ||
         ""
 }; 
-
-const { error } =
+    const { error } =
     await supabaseClient
         .from("Planung")
         .upsert([
@@ -485,17 +482,15 @@ const { error } =
 if (error) {
 
     console.log(error);
-
-    zeigeMeldung(
+ zeigeMeldung(
         "❌ Fehler beim Speichern"
     );
-
-    return;
-
+ return;
 }
     schliessenModal();
 
     ladePlan();
+}
 /* ==========================
    OFFENE DIENSTE
 ========================== */
