@@ -538,12 +538,28 @@ let dienstName = eintrag?.dienst;
     dienstName =
         wmEintrag?.dienst || "";
 }    
-       if (
+  if (
     istAbwesenheit(
         eintrag.art
     )
-) }
-  else if (
+) {
+
+    const stamm =
+        findeStammdaten(
+            fahrerName
+        );
+
+    if (stamm) {
+
+        liste.push({
+            datum: datum,
+            dienst: dienstName
+        });
+
+    }
+
+}
+else if (
     eintrag.art === "Dienst" &&
     wmEintrag &&
     wmEintrag.dienst !== eintrag.dienst
@@ -554,7 +570,7 @@ let dienstName = eintrag?.dienst;
         dienst: wmEintrag.dienst
     });
 
-}     
+}
        {
            const stamm =
                 findeStammdaten(
