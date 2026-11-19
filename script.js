@@ -460,7 +460,7 @@ async function speichernZelle() {
         alterEintrag?.fahrzeug ||
         ""
 }; 
-}
+
 const { error } =
     await supabaseClient
         .from("Planung")
