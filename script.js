@@ -232,6 +232,41 @@ async function fahrerInaktivSetzen() {
     ladeFahrer();
    
 }
+function fahrerStatusAendern() {
+
+    const select =
+        document.getElementById(
+            "fahrerStatusSelect"
+        );
+
+    select.innerHTML = "";
+
+    fahrerStammdaten.forEach(
+        fahrer => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                fahrer.familienname;
+
+            option.textContent =
+                fahrer.name;
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+    document.getElementById(
+        "fahrerStatusOverlay"
+    ).style.display = "flex";
+
+}
 function fahrerInfo() {
 
     const select =
