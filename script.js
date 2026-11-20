@@ -507,6 +507,9 @@ function aktualisiereFahrzeugInfo() {
 
         "<br><br><b>Ladeplätze:</b> " +
         (fahrzeug.ladeplaetze || "-") +
+       
+        "<br><br><b>Ladeplätze:</b> " +
+        (fahrzeug.standort || "-") +
 
         "<br><br><b>Anhängerkupplung:</b> " +
         (
@@ -1448,6 +1451,8 @@ const { error } =
 
                 kategorie:
                     kategorie,
+                standort:
+                    standort,
 
                 status:
                     "Aktiv"
@@ -1478,6 +1483,9 @@ if (error) {
 
     document.getElementById(
         "neuKategorie"
+    ).value = "";
+       document.getElementById(
+        "neuStandort"
     ).value = "";
 
     schliesseNeuesFahrzeug();
