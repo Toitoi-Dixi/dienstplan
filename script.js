@@ -779,11 +779,24 @@ if (isNaN(von) || isNaN(bis))
 
     let header =
         "<tr><th class='fahrerkopf'>Fahrer</th>";
-
+    
+let kwHeader =
+    "<tr><th></th>";
     for (let i = 0; i < tage.length; i++) {
 
         const tag =
             tage[i];
+        if (tag.getDay() === 1) {
+
+    const kw =
+        getKW(tag);
+
+    kwHeader +=
+        "<th colspan='7'>KW " +
+        kw +
+        "</th>";
+
+}
 
         const wd =
             tag.toLocaleDateString(
@@ -813,7 +826,11 @@ if (isNaN(von) || isNaN(bis))
 
     header += "</tr>";
 
-    thead.innerHTML = header;
+  kwHeader += "</tr>";
+
+thead.innerHTML =
+    kwHeader +
+    header;
 
     for (let f = 0; f < fahrerStammdaten.length; f++) {
 
