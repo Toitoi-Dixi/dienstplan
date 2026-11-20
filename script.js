@@ -779,7 +779,6 @@ async function speichernZelle() {
         );
     const alterEintrag =
     plan[key];
-
 if (
     art === "Dienst" &&
     dienst
@@ -794,25 +793,23 @@ if (
 
     if (konflikt) {
 
-    zeigeKonflikt(
-    "Dienst bereits verplant bei:<br><br>" +
-    konflikt,
-async function () {
+        zeigeKonflikt(
+            "Dienst bereits verplant bei:<br><br>" +
+            konflikt,
+            async function () {
 
-    await speicherePlanEintrag(
-        key,
-        art,
-        dienst,
-        fahrzeug,
-        alterEintrag
-    );
+                await speicherePlanEintrag(
+                    key,
+                    art,
+                    dienst,
+                    fahrzeug,
+                    alterEintrag
+                );
 
-}
-);
+            }
+        );
 
-return;
-
-        
+        return;
 
     }
 
@@ -825,6 +822,7 @@ await speicherePlanEintrag(
     fahrzeug,
     alterEintrag
 );
+
 /* ==========================
    OFFENE DIENSTE
 ========================== */
