@@ -45,6 +45,39 @@ function istAbwesenheit(art) {
     );
 
 }
+function findeDienstKonflikt(
+    dienst,
+    datum,
+    aktuellerFahrer
+) {
+
+    for (const key in plan) {
+
+        const eintrag =
+            plan[key];
+
+        const fahrer =
+            key.split("_")[0];
+
+        const planDatum =
+            key.split("_")[1];
+
+        if (
+            fahrer !== aktuellerFahrer &&
+            planDatum === datum &&
+            eintrag.art === "Dienst" &&
+            eintrag.dienst === dienst
+        ) {
+
+            return fahrer;
+
+        }
+
+    }
+
+    return null;
+
+}
 function zeigeMeldung(text) {
 
     const meldung =
@@ -647,6 +680,47 @@ async function speichernZelle() {
         );
     const alterEintrag =
     plan[key];
+    const key =
+    getKey(
+        aktuellerFahrer,
+        aktuellesDatum
+    );
+
+const alterEintrag =
+    plan[key];
+
+if (
+    art === "Dienst" &&
+    dienst
+) {
+
+    const konflikt =
+        findeDienstKonflikt(
+            dienst,
+            aktuellesDatum,
+            aktuellerFahrer
+        );
+
+    if (konflikt) {
+
+        const fortfahren =
+            confirm(
+                "Dienst bereits verplant bei: " +
+                konflikt +
+                "\n\nTrotzdem speichern?"
+            );
+
+        if (!fortfahren) {
+
+            return;
+
+        }
+
+    }
+
+}
+
+plan[key] = {
      plan[key] = {
     art: art,
     dienst:
