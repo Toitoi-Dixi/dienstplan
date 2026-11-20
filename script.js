@@ -351,7 +351,8 @@ select.appendChild(
 
 document.getElementById(
     "fahrerInfoOverlay"
-).style.display = "flex";}
+).style.display = "flex";
+}
 
 function aktualisiereFahrerInfo() {
 
