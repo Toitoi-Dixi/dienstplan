@@ -223,11 +223,14 @@ Schließen
             <input
                 type="text"
                 id="neuFahrzeugnummer">
-    <label>Kategorie</label>
-
-    <input
+            <label>Kategorie</label>
+            <input
         type= "text"
         id="neuKategorie">
+              <label>Standort</label>
+            <input
+        type= "text"
+        id="neuStandort">
     <div class="modalButtons">
         <button
             onclick="fahrzeugSpeichern()">
@@ -250,7 +253,7 @@ Schließen
              <select id ="fahrerStatusNeu">
             <option>Aktiv</option>
             <option>Inaktiv</option>
-        </select>
+            </select>
             <label>Ab Datum</label>
             <input type= "date" 
                 id="fahrerStatusDatum">
@@ -276,6 +279,8 @@ Schließen
              <select id ="fahrzeugStatusNeu">
             <option>Aktiv</option>
             <option>Inaktiv</option>
+            <option>Werkstatt</option>
+            <option>Ausgeschieden</option>
         </select>
             <label>Ab Datum</label>
             <input type= "date" 
