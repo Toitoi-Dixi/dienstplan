@@ -380,6 +380,61 @@ select.appendChild(
 
         }
     );
+function fahrzeugInfo() {
+
+    const select =
+        document.getElementById(
+            "fahrzeugInfoSelect"
+        );
+
+    select.innerHTML = "";
+
+    const leerOption =
+        document.createElement(
+            "option"
+        );
+
+    leerOption.value = "";
+
+    leerOption.textContent =
+        "Bitte Fahrzeug auswählen";
+
+    select.appendChild(
+        leerOption
+    );
+
+    fahrzeugStammdaten.forEach(
+        fahrzeug => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                fahrzeug.interne_ID;
+
+            option.textContent =
+                fahrzeug.kennzeichen +
+                " - " +
+                fahrzeug.interne_ID;
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+    document.getElementById(
+        "fahrzeugInfoDaten"
+    ).innerHTML = "";
+
+    document.getElementById(
+        "fahrzeugInfoOverlay"
+    ).style.display = "flex";
+
+}
 
 
 document.getElementById(
