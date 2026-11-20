@@ -552,6 +552,21 @@ function aktualisiereFahrzeugInfo() {
         (fahrzeug.status || "-");
 
 }
+function schliesseFahrzeugInfo() {
+
+    document.getElementById(
+        "fahrzeugInfoOverlay"
+    ).style.display = "none";
+
+    document.getElementById(
+        "fahrzeugInfoDaten"
+    ).innerHTML = "";
+
+}
+document.getElementById(
+    "fahrzeugInfoSelect"
+).value = "";
+
 /* ==========================
    MODAL
 ========================== */
