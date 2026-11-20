@@ -358,10 +358,7 @@ document.getElementById(
 function aktualisiereFahrerInfo() {
 
     const familienname =
-        document.getElementById(
-            "fahrerInfoSelect"
-        ).value;
-
+      
     const fahrer =
         fahrerStammdaten.find(
             f =>
@@ -521,6 +518,10 @@ function aktualisiereFahrzeugInfo() {
 
 }
 function schliesseFahrzeugInfo() {
+      document.getElementById(
+            "fahrerInfoSelect"
+        ).value;
+
 
     document.getElementById(
         "fahrzeugInfoOverlay"
@@ -1588,7 +1589,7 @@ await ladeFahrzeuge();
 
 }
 
-}
+
 function dienstAnlegen() {
     zeigeMeldung("Dienst anlegen folgt");
 }
