@@ -843,22 +843,12 @@ let kwHeader =
             headerKlasse = "sonntag";
         }
 
-    let kwText = "";
-
-if (tag.getDay() === 1) {
-
-    kwText =
-        "KW " +
-        getKW(tag) +
-        "<br>";
-
-}
 
 header +=
     "<th class='" +
     headerKlasse +
     "'>" +
-    kwText +
+ 
     wd +
     "<br>" +
     tag.getDate() +
