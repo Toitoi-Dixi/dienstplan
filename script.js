@@ -1538,8 +1538,25 @@ async function fahrzeugStatusSpeichern() {
         await supabaseClient
             .from("Fahrzeug_Stammdaten")
             .update({
-                status: neuerStatus
-            })
+                status: neuerStatus,
+     aktiv_ab:
+        neuerStatus === "Aktiv"
+            ? statusDatum
+            : null,
+
+    inaktiv_ab:
+        neuerStatus === "Inaktiv"
+            ? statusDatum
+            : null,
+    werkstatt_ab:
+        neuerStatus === "Werkstatt"
+            ? statusDatum
+            : null,
+ ausgeschieden_seit:
+        neuerStatus === "Ausgeschieden"
+            ? statusDatum
+            : null
+})
             .eq(
                 "interne_ID",
                 fahrzeugID
@@ -1554,15 +1571,18 @@ async function fahrzeugStatusSpeichern() {
         );
 
         return;
+
     }
 
-    await ladeFahrzeuge();
-
+    await ladeFahrzeug();
+await ladeAlleFahrzeuge();
     zeigeMeldung(
         "✅ Status geändert"
     );
 
     schliesseFahrzeugStatus();
+
+}
 
 }
 function dienstAnlegen() {
