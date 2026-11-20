@@ -822,7 +822,7 @@ await speicherePlanEintrag(
     fahrzeug,
     alterEintrag
 );
-
+}
 /* ==========================
    OFFENE DIENSTE
 ========================== */
