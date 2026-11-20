@@ -1533,6 +1533,9 @@ async function fahrzeugStatusSpeichern() {
         document.getElementById(
             "fahrzeugStatusNeu"
         ).value;
+     const statusDatum =
+        document.getElementById(
+            "fahrzeugStatusDatum").value;
 
     const { error } =
         await supabaseClient
@@ -1575,8 +1578,8 @@ async function fahrzeugStatusSpeichern() {
     }
 
 
-    await ladeFahrzeug();
-await ladeAlleFahrzeuge();
+await ladeFahrzeuge();
+
     zeigeMeldung(
         "✅ Status geändert"
     );
