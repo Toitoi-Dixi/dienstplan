@@ -297,20 +297,24 @@ Schließen
     </div>
 </div>
 </div>  
-    class ="modalOverlay"
-    <div> class="modal"
+    <div id="konfliktOverlay"
+    class ="modalOverlay">
+    <div class="modal">
         <h2>Dienst bereits verplant</h2>
-        <div> id="konfliktText"
-            <div> class="modaButtons"
-                <butoon>
-                    onkclick="konfliktFortfahren()"
+        <div id="konfliktText">
+        </div>
+            <div class="modaButtons">
+                <butoon
+                    onkclick="konfliktFortfahren()">
                     Trotzdem speichern
                     <button>
-                        onclick="konfliktAbbrechen()"
+                        <button
+                        onclick="konfliktAbbrechen()">
                         Abbrechen
+                        </button>
                     </div>
-                    </div>
-                    </div>
+                </div>
+             </div>
                         
                     </button>
                     
