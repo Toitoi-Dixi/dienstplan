@@ -508,7 +508,7 @@ function aktualisiereFahrzeugInfo() {
         "<br><br><b>Ladeplätze:</b> " +
         (fahrzeug.ladeplaetze || "-") +
        
-        "<br><br><b>Ladeplätze:</b> " +
+        "<br><br><b>Standort:</b> " +
         (fahrzeug.standort || "-") +
 
         "<br><br><b>Anhängerkupplung:</b> " +
