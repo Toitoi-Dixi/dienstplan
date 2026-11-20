@@ -680,10 +680,6 @@ async function speichernZelle() {
         );
     const alterEintrag =
     plan[key];
-  
-
-const alterEintrag =
-    plan[key];
 
 if (
     art === "Dienst" &&
