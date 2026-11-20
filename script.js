@@ -705,7 +705,7 @@ async function speicherePlanEintrag(
     fahrzeug,
     alterEintrag
 ) {
-
+console.log("SPEICHEREPLANEINTRAG");
     plan[key] = {
         art: art,
         dienst:
