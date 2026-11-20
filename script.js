@@ -326,7 +326,7 @@ async function fahrerStatusSpeichern() {
     }
 
     await ladeFahrer();
-
+await ladeAlleFahrer();
     zeigeMeldung(
         "✅ Status geändert"
     );
