@@ -1573,6 +1573,7 @@ async function fahrzeugStatusSpeichern() {
         return;
 
     }
+}}
 
     await ladeFahrzeug();
 await ladeAlleFahrzeuge();
