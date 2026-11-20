@@ -505,6 +505,53 @@ function fahrzeugInfo() {
     ).style.display = "flex";
 
 }
+function aktualisiereFahrzeugInfo() {
+
+    const fahrzeugID =
+        document.getElementById(
+            "fahrzeugInfoSelect"
+        ).value;
+
+    const fahrzeug =
+        fahrzeugStammdaten.find(
+            f =>
+                String(
+                    f.interne_ID
+                ) === fahrzeugID
+        );
+
+    if (!fahrzeug) return;
+
+    document.getElementById(
+        "fahrzeugInfoDaten"
+    ).innerHTML =
+
+        "<b>Kennzeichen:</b> " +
+        (fahrzeug.kennzeichen || "") +
+
+        "<br><br><b>Interne ID:</b> " +
+        (fahrzeug.interne_ID || "") +
+
+        "<br><br><b>Kategorie:</b> " +
+        (fahrzeug.kategorie || "") +
+
+        "<br><br><b>Sitzplätze:</b> " +
+        (fahrzeug.sitzplaetze || "-") +
+
+        "<br><br><b>Ladeplätze:</b> " +
+        (fahrzeug.ladeplaetze || "-") +
+
+        "<br><br><b>Anhängerkupplung:</b> " +
+        (
+            fahrzeug.anhaengerkupplung
+                ? "Ja"
+                : "Nein"
+        ) +
+
+        "<br><br><b>Status:</b> " +
+        (fahrzeug.status || "-");
+
+}
 /* ==========================
    MODAL
 ========================== */
