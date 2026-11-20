@@ -20,8 +20,8 @@ let fahrerStammdaten = [];
 let fahrzeugStammdaten = [];
 let wochenmatrix = [];
 let abwesenheitsarten = [];
-
 let plan = {};
+let konfliktCallback = null;
 
 /* ==========================
    HILFSFUNKTIONEN
@@ -97,6 +97,47 @@ function zeigeMeldung(text) {
             "none";
 
     }, 3000);
+}
+function zeigeKonflikt(
+    text,
+    callback
+) {
+
+    konfliktCallback =
+        callback;
+
+    document.getElementById(
+        "konfliktText"
+    ).innerHTML = text;
+
+    document.getElementById(
+        "konfliktOverlay"
+    ).style.display = "flex";
+
+}
+
+function konfliktFortfahren() {
+
+    document.getElementById(
+        "konfliktOverlay"
+    ).style.display = "none";
+
+    if (konfliktCallback) {
+
+        konfliktCallback();
+
+    }
+
+}
+
+function konfliktAbbrechen() {
+
+    document.getElementById(
+        "konfliktOverlay"
+    ).style.display = "none";
+
+    konfliktCallback = null;
+
 }
 /* ==========================
    FAHRER
@@ -695,16 +736,17 @@ if (
 
     if (konflikt) {
 
-        const fortfahren =
-            confirm(
-                "Dienst bereits verplant bei: " +
-                konflikt +
-                "\n\nTrotzdem speichern?"
-            );
+    zeigeKonflikt(
+    "Dienst bereits verplant bei:<br><br>" +
+    konflikt,
+    function () {
 
-        if (!fortfahren) {
+        konfliktCallback = null;
 
-            return;
+    }
+);
+
+return;
 
         }
 
