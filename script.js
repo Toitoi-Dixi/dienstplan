@@ -352,9 +352,7 @@ select.appendChild(
 document.getElementById(
     "fahrerInfoOverlay"
 ).style.display = "flex";}
-document.getElementById(
-    "fahrerInfoDaten"
-).innerHTML = "";
+
 function aktualisiereFahrerInfo() {
 
     const familienname =
