@@ -680,11 +680,7 @@ async function speichernZelle() {
         );
     const alterEintrag =
     plan[key];
-    const key =
-    getKey(
-        aktuellerFahrer,
-        aktuellesDatum
-    );
+  
 
 const alterEintrag =
     plan[key];
