@@ -736,7 +736,36 @@ function offeneDiensteAnzeigen() {
 /* ==========================
    MATRIX
 ========================== */
+function getKW(datum) {
 
+    const d =
+        new Date(datum);
+
+    d.setHours(0, 0, 0, 0);
+
+    d.setDate(
+        d.getDate() +
+        4 -
+        (d.getDay() || 7)
+    );
+
+    const jahrStart =
+        new Date(
+            d.getFullYear(),
+            0,
+            1
+        );
+
+    return Math.ceil(
+        (
+            (
+                (d - jahrStart) /
+                86400000
+            ) + 1
+        ) / 7
+    );
+
+}
 function ladePlan() {
 
     const von =
@@ -814,14 +843,26 @@ let kwHeader =
             headerKlasse = "sonntag";
         }
 
-        header +=
-            "<th class='" +
-            headerKlasse +
-            "'>" +
-            wd +
-            "<br>" +
-            tag.getDate() +
-            "</th>";
+    let kwText = "";
+
+if (tag.getDay() === 1) {
+
+    kwText =
+        "KW " +
+        getKW(tag) +
+        "<br>";
+
+}
+
+header +=
+    "<th class='" +
+    headerKlasse +
+    "'>" +
+    kwText +
+    wd +
+    "<br>" +
+    tag.getDate() +
+    "</th>";    
     }
 
     header += "</tr>";
