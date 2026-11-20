@@ -698,7 +698,65 @@ function schliessenModal() {
         "modalOverlay"
     ).style.display = "none";
 }
+async function speicherePlanEintrag(
+    key,
+    art,
+    dienst,
+    fahrzeug,
+    alterEintrag
+) {
 
+    plan[key] = {
+        art: art,
+        dienst:
+            dienst ||
+            alterEintrag?.dienst ||
+            "",
+        fahrzeug:
+            fahrzeug ||
+            alterEintrag?.fahrzeug ||
+            ""
+    };
+
+    const { error } =
+        await supabaseClient
+            .from("Planung")
+            .upsert([
+                {
+                    fahrer:
+                        aktuellerFahrer,
+
+                    datum:
+                        aktuellesDatum,
+
+                    art:
+                        art,
+
+                    dienst:
+                        dienst,
+
+                    fahrzeug:
+                        fahrzeug
+                }
+            ]);
+
+    if (error) {
+
+        console.log(error);
+
+        zeigeMeldung(
+            "❌ Fehler beim Speichern"
+        );
+
+        return;
+
+    }
+
+    schliessenModal();
+
+    ladePlan();
+
+}
 async function speichernZelle() {
 
     const art =
@@ -739,11 +797,17 @@ if (
     zeigeKonflikt(
     "Dienst bereits verplant bei:<br><br>" +
     konflikt,
-    function () {
+async function () {
 
-        konfliktCallback = null;
+    await speicherePlanEintrag(
+        key,
+        art,
+        dienst,
+        fahrzeug,
+        alterEintrag
+    );
 
-    }
+}
 );
 
 return;
@@ -754,51 +818,13 @@ return;
 
 }
 
-     plan[key] = {
-    art: art,
-    dienst:
-        dienst ||
-        alterEintrag?.dienst ||
-        "",
-    fahrzeug:
-        fahrzeug ||
-        alterEintrag?.fahrzeug ||
-        ""
-}; 
-    const { error } =
-    await supabaseClient
-        .from("Planung")
-        .upsert([
-            {
-                fahrer:
-                    aktuellerFahrer,
-
-                datum:
-                    aktuellesDatum,
-
-                art:
-                    art,
-
-                dienst:
-                    dienst,
-
-                fahrzeug:
-                    fahrzeug
-            }
-        ]);
-   console.log("PLAN ERROR", error);
-if (error) {
-
-    console.log(error);
- zeigeMeldung(
-        "❌ Fehler beim Speichern"
-    );
- return;
-}
-    schliessenModal();
-
-    ladePlan();
-}
+await speicherePlanEintrag(
+    key,
+    art,
+    dienst,
+    fahrzeug,
+    alterEintrag
+);
 /* ==========================
    OFFENE DIENSTE
 ========================== */
