@@ -712,7 +712,6 @@ if (
 
 }
 
-plan[key] = {
      plan[key] = {
     art: art,
     dienst:
