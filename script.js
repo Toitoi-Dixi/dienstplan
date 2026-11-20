@@ -200,38 +200,6 @@ async function fahrerSpeichern() {
         "fahrerNeuOverlay"
     ).style.display = "none";
 
-
-
-async function fahrerInaktivSetzen() {
-
-    const name =
-        prompt("Fahrername:");
-
-    if (!name) return;
-
-    const { error } =
-        await supabaseClient
-            .from("Fahrer_Stammdaten")
-            .update({
-                status: "Inaktiv"
-            })
-            .eq(
-                "familienname",
-                name
-            );
-
-    if (error) {
-
-        console.log(error);
-       zeigeMeldung(
-    "❌ Fehler"
-);
-        return;
-    }
-
-    ladeFahrer();
-   
-}
 function fahrerStatusAendern() {
 
     const select =
