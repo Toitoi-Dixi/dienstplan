@@ -1417,11 +1417,15 @@ async function fahrzeugSpeichern() {
         document.getElementById(
             "neuKategorie"
         ).value.trim();
-
+const standort =
+        document.getElementById(
+            "neuStandort"
+        ).value.trim();
 if (
     !kennzeichen ||
     !fahrzeugnummer ||
-    !kategorie
+    !kategorie  ||
+    !standort  ||
 ) {
 
     zeigeMeldung(
