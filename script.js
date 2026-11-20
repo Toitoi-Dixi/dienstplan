@@ -357,6 +357,9 @@ document.getElementById(
 function aktualisiereFahrerInfo() {
 
     const familienname =
+          document.getElementById(
+            "fahrerInfoSelect"
+        ).value;
       
     const fahrer =
         fahrerStammdaten.find(
