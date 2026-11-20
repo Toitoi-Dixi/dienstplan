@@ -1425,7 +1425,7 @@ if (
     !kennzeichen ||
     !fahrzeugnummer ||
     !kategorie  ||
-    !standort  ||
+    !standort 
 ) {
 
     zeigeMeldung(
