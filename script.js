@@ -901,35 +901,35 @@ function offeneDiensteErmitteln() {
 
         }
 
-        if (
+      if (
     istAbwesenheit(
         eintrag.art
     )
 ) {
 
-  if (
-    wmEintrag?.dienst &&
-    !istDienstVerplant(
-        wmEintrag.dienst,
-        datum
-    )
-) {
+    if (
+        wmEintrag?.dienst &&
+        !istDienstVerplant(
+            wmEintrag.dienst,
+            datum
+        )
+    ) {
 
-    liste.push({
-        datum: datum,
-        dienst: wmEintrag.dienst
-    });
+        liste.push({
+            datum: datum,
+            dienst: wmEintrag.dienst
+        });
 
-} 
-  if (
-    eintrag.dienst &&
-    eintrag.dienst !== wmEintrag?.dienst &&
-    !istDienstVerplant(
-        eintrag.dienst,
-        datum
-    )
-)
-            {
+    }
+
+    if (
+        eintrag.dienst &&
+        eintrag.dienst !== wmEintrag?.dienst &&
+        !istDienstVerplant(
+            eintrag.dienst,
+            datum
+        )
+    ) {
 
         liste.push({
             datum: datum,
