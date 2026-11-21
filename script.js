@@ -939,7 +939,7 @@ function offeneDiensteErmitteln() {
     }
 
 }
-          /*
+          
         else if (
             eintrag.art === "Dienst" &&
             wmEintrag &&
@@ -954,7 +954,7 @@ function offeneDiensteErmitteln() {
         }
 
     }
- */
+}
 const eindeutig = [];
 
 liste.forEach(eintrag => {
