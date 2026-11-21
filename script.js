@@ -78,6 +78,34 @@ function findeDienstKonflikt(
     return null;
 
 }
+function istDienstVerplant(
+    dienst,
+    datum
+) {
+
+    for (const key in plan) {
+
+        const eintrag =
+            plan[key];
+
+        const planDatum =
+            key.split("_")[1];
+
+        if (
+            planDatum === datum &&
+            eintrag.art === "Dienst" &&
+            eintrag.dienst === dienst
+        ) {
+
+            return true;
+
+        }
+
+    }
+
+    return false;
+
+}
 function zeigeMeldung(text) {
 
     const meldung =
@@ -881,10 +909,26 @@ function offeneDiensteErmitteln() {
 
     if (wmEintrag?.dienst) {
 
-        liste.push({
-            datum: datum,
-            dienst: wmEintrag.dienst
-        });
+    if (
+    !istDienstVerplant(
+        wmEintrag.dienst,
+        datum
+    )
+) {
+
+if (
+    !istDienstVerplant(
+        eintrag.dienst,
+        datum
+    )
+) {
+
+    liste.push({
+        datum: datum,
+        dienst: eintrag.dienst
+    });
+
+}
 
     }
 
