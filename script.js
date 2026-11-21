@@ -907,35 +907,29 @@ function offeneDiensteErmitteln() {
     )
 ) {
 
-    if (wmEintrag?.dienst) {
-
-    if (
+  if (
+    wmEintrag?.dienst &&
     !istDienstVerplant(
         wmEintrag.dienst,
         datum
     )
 ) {
 
-if (
+    liste.push({
+        datum: datum,
+        dienst: wmEintrag.dienst
+    });
+
+} 
+  if (
+    eintrag.dienst &&
+    eintrag.dienst !== wmEintrag?.dienst &&
     !istDienstVerplant(
         eintrag.dienst,
         datum
     )
-) {
-
-    liste.push({
-        datum: datum,
-        dienst: eintrag.dienst
-    });
-
-}
-
-    }
-
-    if (
-        eintrag.dienst &&
-        eintrag.dienst !== wmEintrag?.dienst
-    ) {
+)
+            {
 
         liste.push({
             datum: datum,
