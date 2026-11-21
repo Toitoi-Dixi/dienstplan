@@ -1497,7 +1497,10 @@ async function ladeDienste() {
 
     dienstSelect.innerHTML = "";
 const offene =
-    offeneDiensteErmitteln();
+    offeneDiensteErmitteln().filter(
+        d =>
+            d.datum === aktuellesDatum
+    );
 
 const offeneGruppe =
     document.createElement(
