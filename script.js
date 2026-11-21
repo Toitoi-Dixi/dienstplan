@@ -974,7 +974,10 @@ liste.forEach(eintrag => {
     }
 
 });
-
+console.log(
+    "EINDEUTIG",
+    eindeutig
+);
 return eindeutig;
 
 }
