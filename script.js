@@ -953,8 +953,28 @@ function offeneDiensteErmitteln() {
         }
 
     }
+const eindeutig = [];
 
-    return liste;
+liste.forEach(eintrag => {
+
+    const vorhanden =
+        eindeutig.find(
+            e =>
+                e.datum === eintrag.datum &&
+                e.dienst === eintrag.dienst
+        );
+
+    if (!vorhanden) {
+
+        eindeutig.push(
+            eintrag
+        );
+
+    }
+
+});
+
+return eindeutig;
 
 }
 
