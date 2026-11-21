@@ -639,11 +639,11 @@ if (
     }
 }
 
-function zelleBearbeiten(name, datum) {
+async function zelleBearbeiten(name, datum) {
 
     aktuellerFahrer = name;
     aktuellesDatum = datum;
-
+await ladeDienste();
     const k = getKey(name, datum);
 
     const stamm =
@@ -1458,7 +1458,40 @@ async function ladeDienste() {
         );
 
     dienstSelect.innerHTML = "";
+const offene =
+    offeneDiensteErmitteln();
 
+const offeneGruppe =
+    document.createElement(
+        "optgroup"
+    );
+
+offeneGruppe.label =
+    "🔴 Offene Dienste";
+    offene.forEach(
+    eintrag => {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value =
+            eintrag.dienst;
+
+        option.textContent =
+            eintrag.dienst;
+
+        offeneGruppe.appendChild(
+            option
+        );
+
+    }
+);
+
+dienstSelect.appendChild(
+    offeneGruppe
+);
     const { data, error } =
         await supabaseClient
             .from("Dienste")
@@ -1470,21 +1503,29 @@ async function ladeDienste() {
         console.log(error);
         return;
     }
+const dienstGruppe =
+    document.createElement(
+        "optgroup"
+    );
 
+dienstGruppe.label =
+    "📋 Reguläre Dienste";
     data.forEach(dienst => {
 
         const option =
             document.createElement(
                 "option"
             );
-
+dienstSelect.appendChild(
+    dienstGruppe
+);
         option.value =
             dienst.bezeichnung;
 
         option.textContent =
             dienst.bezeichnung;
 
-        dienstSelect.appendChild(
+        dienstGruppe.appendChild(
             option
         );
 
