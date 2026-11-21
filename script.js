@@ -975,7 +975,7 @@ liste.forEach(eintrag => {
 
 });
 
-);
+
 return eindeutig;
 
 }
