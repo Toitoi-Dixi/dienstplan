@@ -954,7 +954,7 @@ function offeneDiensteErmitteln() {
         }
 
     }
-}
+
 const eindeutig = [];
 
 liste.forEach(eintrag => {
