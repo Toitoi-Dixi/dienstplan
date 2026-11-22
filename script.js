@@ -22,6 +22,7 @@ let wochenmatrix = [];
 let abwesenheitsarten = [];
 let plan = {};
 let konfliktCallback = null;
+let dienste = [];
 
 /* ==========================
    HILFSFUNKTIONEN
@@ -1557,6 +1558,7 @@ dienstSelect.appendChild(
     offeneGruppe
 );
     const { data, error } =
+        dienste =data;
         await supabaseClient
             .from("Dienste")
             .select("*")
@@ -1846,10 +1848,110 @@ function dienstAnlegen() {
     zeigeMeldung("Dienst anlegen folgt");
 }
 
-function dienstLoeschen() {
-    zeigeMeldung("Dienst löschen folgt");
-}
+function dienstStatusAendern() {
 
+    const select =
+        document.getElementById(
+            "dienstStatusSelect"
+        );
+
+    select.innerHTML = "";
+
+    dienste.forEach(
+        dienst => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                dienst.bezeichnung;
+
+            option.textContent =
+                dienst.bezeichnung;
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+    document.getElementById(
+        "dienstStatusOverlay"
+    ).style.display = "flex";
+
+}
+function schliesseDienstStatus() {
+
+    document.getElementById(
+        "dienstStatusOverlay"
+    ).style.display = "none";
+
+}
+async function dienstStatusSpeichern() {
+
+    const dienst =
+        document.getElementById(
+            "dienstStatusSelect"
+        ).value;
+
+    const neuerStatus =
+        document.getElementById(
+            "dienstStatusNeu"
+        ).value;
+
+    const statusDatum =
+        document.getElementById(
+            "dienstStatusDatum"
+        ).value;
+
+    const { error } =
+        await supabaseClient
+            .from("Dienste")
+            .update({
+
+                status:
+                    neuerStatus,
+
+                aktiv_ab:
+                    neuerStatus === "Aktiv"
+                        ? statusDatum
+                        : null,
+
+                inaktiv_ab:
+                    neuerStatus === "Inaktiv"
+                        ? statusDatum
+                        : null
+
+            })
+            .eq(
+                "bezeichnung",
+                dienst
+            );
+
+    if (error) {
+
+        console.log(error);
+
+        zeigeMeldung(
+            "❌ Fehler"
+        );
+
+        return;
+
+    }
+
+    await ladeDienste();
+
+    zeigeMeldung(
+        "✅ Status geändert"
+    );
+
+    schliesseDienstStatus();
+
+}
 function fahrzeugLoeschen() {
     zeigeMeldung("Fahrzeug löschen folgt");
 }
