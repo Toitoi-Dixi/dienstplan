@@ -1583,9 +1583,7 @@ dienstGruppe.label =
             document.createElement(
                 "option"
             );
-dienstSelect.appendChild(
-    dienstGruppe
-);
+
         option.value =
             dienst.bezeichnung;
 
@@ -1597,6 +1595,9 @@ dienstSelect.appendChild(
         );
 
     });
+    dienstSelect.appendChild(
+    dienstGruppe
+);
 }
 async function ladeFahrzeuge() {
 
