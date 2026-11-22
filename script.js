@@ -1909,7 +1909,7 @@ async function dienstStatusSpeichern() {
             "dienstStatusDatum"
         ).value;
 
-    const { error } =
+    const { data, error } =
         await supabaseClient
             .from("Dienste")
             .update({
@@ -1932,7 +1932,7 @@ async function dienstStatusSpeichern() {
                 "bezeichnung",
                 dienst
             );
-
+.select();
     if (error) {
 
         console.log(error);
@@ -1954,6 +1954,4 @@ async function dienstStatusSpeichern() {
     schliesseDienstStatus();
 
 }
-function fahrzeugLoeschen() {
-    zeigeMeldung("Fahrzeug löschen folgt");
-}
+
