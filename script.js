@@ -1931,7 +1931,7 @@ async function dienstStatusSpeichern() {
             .eq(
                 "bezeichnung",
                 dienst
-            );
+            )
 .select();
     if (error) {
 
