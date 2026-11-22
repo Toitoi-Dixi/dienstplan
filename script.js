@@ -1558,7 +1558,7 @@ dienstSelect.appendChild(
     offeneGruppe
 );
     const { data, error } =
-        dienste =data;
+       
         await supabaseClient
             .from("Dienste")
             .select("*")
@@ -1569,6 +1569,7 @@ dienstSelect.appendChild(
         console.log(error);
         return;
     }
+     dienste =data;
 const dienstGruppe =
     document.createElement(
         "optgroup"
