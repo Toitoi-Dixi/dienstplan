@@ -297,6 +297,33 @@ Schließen
     </div>
 </div>
 </div>  
+     <div id="dienstStatusOverlay"
+        class="modalOverlay">
+        <div class="modal">
+            <h2>Dienststatus ändern</h2>
+            <label>Diens</label>
+            <select id ="dienstStatusSelect"></select>
+        <label>Status</label>
+             <select id ="dienstStatusNeu">
+            <option>Aktiv</option>
+            <option>Inaktiv</option>
+            <option>Reserve</option>
+           </select>
+            <label>Ab Datum</label>
+            <input type= "date" 
+                id="dienstStatusDatum">
+    <div class="modalButtons">
+        <button
+            onclick="dienstStatusSpeichern()">
+            Speichern
+        </button>
+        <button
+            onclick="schliesseDienstStatus()">
+            Abbrechen
+        </button>
+    </div>
+</div>
+</div>  
     <div id="konfliktOverlay"
     class ="modalOverlay">
     <div class="modal">
