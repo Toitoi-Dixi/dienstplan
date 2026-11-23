@@ -1926,17 +1926,6 @@ console.log(
     error
 );
 
-        return;
-
-    }
-
-    await ladeDienste();
-
-    zeigeMeldung(
-        "✅ Status geändert"
-    );
-
-    schliesseDienstStatus();
 
 }
 
