@@ -2009,7 +2009,26 @@ async function dienstSpeichern() {
         return;
 
     }
+const dienstVorhanden =
+    dienste.find(
+        d =>
+            d.bezeichnung
+                ?.toLowerCase()
+                .trim() ===
+            bezeichnung
+                .toLowerCase()
+                .trim()
+    );
 
+if (dienstVorhanden) {
+
+    zeigeMeldung(
+        "❌ Dienst existiert bereits"
+    );
+
+    return;
+
+}
     const { error } =
         await supabaseClient
             .from("Dienste")
