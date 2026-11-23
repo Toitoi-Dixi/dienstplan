@@ -1410,7 +1410,28 @@ else if (
     "</span>";
 
 }
+else if (
 
+    fahrzeug.status ===
+    "Inaktiv"
+
+    &&
+
+    fahrzeug.inaktiv_ab
+
+    &&
+
+    datum >=
+    fahrzeug.inaktiv_ab
+
+) {
+
+    text2 =
+        "<span class='warnung'>" +
+        "⚠ Inaktiv" +
+        "</span>";
+
+}
         else if (
             fahrzeug.status ===
             "Ausgeschieden"
