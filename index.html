@@ -392,3 +392,73 @@ Schließen
 
 </body>
 </html>
+<div id="fehlzeitOverlay"
+     class="modalOverlay">
+
+    <div class="modal">
+
+        <h2>
+            Fehlzeit erfassen
+        </h2>
+
+        <label>
+            Fahrer
+        </label>
+
+        <select
+            id="fehlzeitFahrer">
+        </select>
+
+        <label>
+            Von
+        </label>
+
+        <input
+            type="date"
+            id="fehlzeitVon">
+
+        <label>
+            Bis
+        </label>
+
+        <input
+            type="date"
+            id="fehlzeitBis">
+
+        <label>
+            Art
+        </label>
+
+        <select
+            id="fehlzeitArt">
+        </select>
+
+        <label>
+            Bemerkung
+        </label>
+
+        <textarea
+            id="fehlzeitBemerkung">
+        </textarea>
+
+        <div class="modalButtons">
+
+            <button
+                onclick="fehlzeitSpeichern()">
+
+                Speichern
+
+            </button>
+
+            <button
+                onclick="schliesseFehlzeit()">
+
+                Abbrechen
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
