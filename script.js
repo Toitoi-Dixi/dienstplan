@@ -1382,8 +1382,10 @@ const datum =
             );
 if (!fahrzeug) {
 
-    text2 =
-        "⚠ Fahrzeug fehlt";
+   text2 =
+    "<span class='warnung'>" +
+    "⚠ Werkstatt" +
+    "</span>";
 
 }
 else if (
@@ -1402,8 +1404,10 @@ else if (
 
 ) {
 
-    text2 =
-        "⚠ Werkstatt";
+   text2 =
+    "<span class='warnung'>" +
+    "⚠ Werkstatt" +
+    "</span>";
 
 }
 
@@ -1412,8 +1416,11 @@ else if (
             "Ausgeschieden"
         ) {
 
-            text2 =
-                "⚠ Ausgeschieden";
+           text2 =
+    "<span class='warnung'>" +
+    "⚠ Ausgeschieden" +
+    "</span>";
+
 
         }
         else {
