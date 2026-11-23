@@ -1868,7 +1868,7 @@ function dienstStatusAendern() {
                 );
 
             option.value =
-                dienst.id;
+                dienst.bezeichnung;
 
             option.textContent =
                 dienst.bezeichnung;
@@ -1907,12 +1907,9 @@ const statusDatum =
     document.getElementById(
         "dienstStatusDatum"
     ).value;
-console.log(
+
+    console.log(
     "DIENST",
-    dienst
-);
-console.log(
-    "Dienst:",
     dienst
 );
 
