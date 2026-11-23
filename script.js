@@ -1380,22 +1380,33 @@ const datum =
                         daten.fahrzeug
                     )
             );
+if (!fahrzeug) {
 
-        if (!fahrzeug) {
+    text2 =
+        "⚠ Fahrzeug fehlt";
 
-            text2 =
-                "⚠ Fahrzeug fehlt";
+}
+else if (
 
-        }
-        else if (
-            fahrzeug.status ===
-            "Werkstatt"
-        ) {
+    fahrzeug.status ===
+    "Werkstatt"
 
-            text2 =
-                "⚠ Werkstatt";
+    &&
 
-        }
+    fahrzeug.werkstatt_ab
+
+    &&
+
+    datum >=
+    fahrzeug.werkstatt_ab
+
+) {
+
+    text2 =
+        "⚠ Werkstatt";
+
+}
+
         else if (
             fahrzeug.status ===
             "Ausgeschieden"
@@ -2678,6 +2689,7 @@ function starteRealtime() {
 
                 await ladePlanung();
                 await ladeFehlzeiten();
+                await ladeFahrzeuge();
 
                 ladePlan();
 
