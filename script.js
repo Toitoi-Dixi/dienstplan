@@ -2158,6 +2158,7 @@ function fehlzeitErfassen() {
     ).style.display = "flex";
 
 }
+
 function schliesseFehlzeit() {
 
     document.getElementById(
@@ -2268,7 +2269,9 @@ async function fehlzeitSpeichern() {
     document.getElementById(
         "fehlzeitBemerkung"
     ).value = "";
+await ladeFehlzeiten();
 
+ladePlan();
     schliesseFehlzeit();
 
     zeigeMeldung(
