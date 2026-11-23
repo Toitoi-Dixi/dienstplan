@@ -57,30 +57,61 @@
     Aktuell Abwesend
 
 </button>   
-        <hr>
-          <button onclick="fuhrpark()">
-            🚚 Fuhrpark
-        </button>
- <button onclick="fahrzeugAnlegen()">
-            + Fahrzeug anlegen
-        </button>
-         <button onclick="fahrzeugStatusAendern()">
-            Fahrzeug Status ändern
-        </button>
-        <hr>
-        <button onclick="administration()">
-            ⚙ Admin
-        </button>
-  <button onclick="fahrerHinzufuegen()">
-            + Fahrer anlegen
-        </button>
-         <button onclick="dienstAnlegen()">
-            + Dienst anlegen
-        </button>
-         <button onclick="dienstStatusAendern()">
-            Dienst Status ändern
-        </button>
-    </div>
+ <hr>
+
+<button onclick="toggleFuhrpark()">
+
+    🚚 Fuhrpark ▼
+
+</button>
+
+<div id="fuhrparkMenu"
+     style="display:none;">
+
+    <button onclick="fahrzeugAnlegen()">
+
+        + Fahrzeug anlegen
+
+    </button>
+
+    <button onclick="fahrzeugStatusAendern()">
+
+        Fahrzeug Status ändern
+
+    </button>
+
+</div>
+
+<hr>
+
+<button onclick="toggleAdmin()">
+
+    ⚙ Admin ▼
+
+</button>
+
+<div id="adminMenu"
+     style="display:none;">
+
+    <button onclick="fahrerHinzufuegen()">
+
+        + Fahrer anlegen
+
+    </button>
+
+    <button onclick="dienstAnlegen()">
+
+        + Dienst anlegen
+
+    </button>
+
+    <button onclick="dienstStatusAendern()">
+
+        Dienst Status ändern
+
+    </button>
+
+</div>    
 
     <div class="planbereich">
 
