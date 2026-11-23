@@ -1974,12 +1974,4 @@ schliesseDienstStatus();
 zeigeMeldung(
     "✅ Status geändert"
 );
-document.getElementById(
-    "dienstStatusSelect"
-).selectedIndex = 0;
 
-document.getElementById(
-    "dienstStatusDatum"
-).value = "";
-
-schliesseDienstStatus();
