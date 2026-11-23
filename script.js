@@ -1911,23 +1911,31 @@ console.log(
     "DIENST",
     dienst
 );
+console.log(
+    "Dienst:",
+    dienst
+);
+
+console.log(
+    "Status:",
+    neuerStatus
+);
+
+console.log(
+    "Datum:",
+    statusDatum
+);
 
 const { data, error } =
     await supabaseClient
         .from("Dienste")
-        .update({
-            status: neuerStatus
-        })
+        .select("*")
         .eq(
             "bezeichnung",
             dienst
-        )
-        .select();
+        );
 
-console.log(
-    "DATA",
-    data
-);
+console.log(data);
 
 console.log(
     "ERROR",
