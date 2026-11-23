@@ -1360,11 +1360,53 @@ const datum =
                 text1 = "Frei";
                 klasse = "frei";
 
-            } else {
+          } else {
 
-                text1 = daten.dienst;
-                text2 = daten.fahrzeug;
-            }
+    text1 = daten.dienst;
+
+    const fahrzeug =
+        fahrzeugStammdaten.find(
+            f =>
+                String(
+                    f.interne_ID
+                ) ===
+                String(
+                    daten.fahrzeug
+                )
+        );
+
+    if (!fahrzeug) {
+
+        text2 =
+            "⚠ Kein Fahrzeug";
+
+    }
+    else if (
+        fahrzeug.status ===
+        "Werkstatt"
+    ) {
+
+        text2 =
+            "⚠ Werkstatt";
+
+    }
+    else if (
+        fahrzeug.status ===
+        "Ausgeschieden"
+    ) {
+
+        text2 =
+            "⚠ Ausgeschieden";
+
+    }
+    else {
+
+        text2 =
+            daten.fahrzeug;
+
+    }
+
+}
 
             let tagesKlasse = "";
 
@@ -1734,7 +1776,13 @@ const fahrzeugSelect =
         "fahrzeugInput"
     );
 fahrzeugSelect.innerHTML = "";
-fahrzeugStammdaten.forEach(
+fahrzeugStammdaten
+    .filter(
+        fahrzeug =>
+            fahrzeug.status ===
+            "Aktiv"
+    )
+    .forEach(
     fahrzeug => {
 
      const option =
