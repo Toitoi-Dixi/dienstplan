@@ -1894,52 +1894,37 @@ function schliesseDienstStatus() {
 }
 async function dienstStatusSpeichern() {
 
-    const dienst =
-        document.getElementById(
-            "dienstStatusSelect"
-        ).value;
+const dienst =
+    document.getElementById(
+        "dienstStatusSelect"
+    ).value;
 
-    const neuerStatus =
-        document.getElementById(
-            "dienstStatusNeu"
-        ).value;
+console.log(
+    "DIENST",
+    dienst
+);
 
-    const statusDatum =
-        document.getElementById(
-            "dienstStatusDatum"
-        ).value;
+const { data, error } =
+    await supabaseClient
+        .from("Dienste")
+        .update({
+            status: neuerStatus
+        })
+        .eq(
+            "bezeichnung",
+            dienst
+        )
+        .select();
 
-    const { data, error } =
-        await supabaseClient
-            .from("Dienste")
-            .update({
+console.log(
+    "DATA",
+    data
+);
 
-                status:
-                    neuerStatus,
-
-                aktiv_ab:
-                    neuerStatus === "Aktiv"
-                        ? statusDatum
-                        : null,
-
-                inaktiv_ab:
-                    neuerStatus === "Inaktiv"
-                        ? statusDatum
-                        : null
-
-            })
-            .eq(
-                "bezeichnung",
-                dienst
-            )
-.select();
-    if (error) {
-
-        console.log(error);
-
-        zeigeMeldung(
-            "❌ Fehler"
-        );
+console.log(
+    "ERROR",
+    error
+);
 
         return;
 
