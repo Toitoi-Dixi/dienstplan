@@ -2095,3 +2095,183 @@ function schliesseNeuenDienst() {
     ).style.display = "none";
 
 }
+function fehlzeitErfassen() {
+
+    const fahrerSelect =
+        document.getElementById(
+            "fehlzeitFahrer"
+        );
+
+    const artSelect =
+        document.getElementById(
+            "fehlzeitArt"
+        );
+
+    fahrerSelect.innerHTML = "";
+    artSelect.innerHTML = "";
+
+    fahrerStammdaten.forEach(
+        fahrer => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                fahrer.name;
+
+            option.textContent =
+                fahrer.name;
+
+            fahrerSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+    abwesenheitsarten.forEach(
+        art => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                art.bezeichnung;
+
+            option.textContent =
+                art.bezeichnung;
+
+            artSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+    document.getElementById(
+        "fehlzeitOverlay"
+    ).style.display = "flex";
+
+}
+function schliesseFehlzeit() {
+
+    document.getElementById(
+        "fehlzeitOverlay"
+    ).style.display = "none";
+
+}
+async function fehlzeitSpeichern() {
+
+    const fahrer =
+        document.getElementById(
+            "fehlzeitFahrer"
+        ).value;
+
+    const von =
+        document.getElementById(
+            "fehlzeitVon"
+        ).value;
+
+    const bis =
+        document.getElementById(
+            "fehlzeitBis"
+        ).value;
+
+    const art =
+        document.getElementById(
+            "fehlzeitArt"
+        ).value;
+
+    const bemerkung =
+        document.getElementById(
+            "fehlzeitBemerkung"
+        ).value.trim();
+
+    if (
+        !fahrer ||
+        !von ||
+        !bis ||
+        !art
+    ) {
+
+        zeigeMeldung(
+            "⚠️ Alle Pflichtfelder ausfüllen"
+        );
+
+        return;
+
+    }
+
+    const tage =
+        Math.floor(
+            (
+                new Date(bis) -
+                new Date(von)
+            ) / 86400000
+        ) + 1;
+
+    const { error } =
+        await supabaseClient
+            .from("Fehlzeiten_Log")
+            .insert([
+                {
+                    fahrer:
+                        fahrer,
+
+                    von:
+                        von,
+
+                    bis:
+                        bis,
+
+                    art:
+                        art,
+
+                    tage:
+                        tage,
+
+                    bemerkung:
+                        bemerkung,
+
+                    erstellt_am:
+                        new Date()
+                            .toISOString()
+                            .split("T")[0]
+                }
+            ]);
+
+    if (error) {
+
+        console.log(error);
+
+        zeigeMeldung(
+            "❌ Fehler beim Speichern"
+        );
+
+        return;
+
+    }
+
+    document.getElementById(
+        "fehlzeitVon"
+    ).value = "";
+
+    document.getElementById(
+        "fehlzeitBis"
+    ).value = "";
+
+    document.getElementById(
+        "fehlzeitBemerkung"
+    ).value = "";
+
+    schliesseFehlzeit();
+
+    zeigeMeldung(
+        "✅ Fehlzeit gespeichert"
+    );
+
+}
