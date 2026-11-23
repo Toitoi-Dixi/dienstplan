@@ -1360,49 +1360,57 @@ const datum =
                 text1 = "Frei";
                 klasse = "frei";
 
-          } else {
+  } else {
 
     text1 = daten.dienst;
 
-    const fahrzeug =
-        fahrzeugStammdaten.find(
-            f =>
-                String(
-                    f.interne_ID
-                ) ===
-                String(
-                    daten.fahrzeug
-                )
-        );
+    if (!daten.fahrzeug) {
 
-    if (!fahrzeug) {
+        text2 = "";
 
-        text2 =
-            "⚠ Kein Fahrzeug";
+    } else {
 
-    }
-    else if (
-        fahrzeug.status ===
-        "Werkstatt"
-    ) {
+        const fahrzeug =
+            fahrzeugStammdaten.find(
+                f =>
+                    String(
+                        f.interne_ID
+                    ) ===
+                    String(
+                        daten.fahrzeug
+                    )
+            );
 
-        text2 =
-            "⚠ Werkstatt";
+        if (!fahrzeug) {
 
-    }
-    else if (
-        fahrzeug.status ===
-        "Ausgeschieden"
-    ) {
+            text2 =
+                "⚠ Fahrzeug fehlt";
 
-        text2 =
-            "⚠ Ausgeschieden";
+        }
+        else if (
+            fahrzeug.status ===
+            "Werkstatt"
+        ) {
 
-    }
-    else {
+            text2 =
+                "⚠ Werkstatt";
 
-        text2 =
-            daten.fahrzeug;
+        }
+        else if (
+            fahrzeug.status ===
+            "Ausgeschieden"
+        ) {
+
+            text2 =
+                "⚠ Ausgeschieden";
+
+        }
+        else {
+
+            text2 =
+                daten.fahrzeug;
+
+        }
 
     }
 
