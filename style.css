@@ -273,3 +273,15 @@ th {
 
     box-shadow: 0 6px 15px rgba(0,0,0,0.3);
 }
+#konfliktTitel {
+
+    font-size: 32px;
+    font-weight: 700;
+
+}
+
+#konfliktText {
+
+    font-size: 18px;
+
+}
