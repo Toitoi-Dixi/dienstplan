@@ -777,6 +777,60 @@ function schliessenModal() {
         "modalOverlay"
     ).style.display = "none";
 }
+function entferneEintrag() {
+
+    zeigeKonflikt(
+
+        "Eintrag wirklich entfernen?",
+
+        async function () {
+
+            const key =
+                getKey(
+                    aktuellerFahrer,
+                    aktuellesDatum
+                );
+
+            delete plan[key];
+
+            const { error } =
+                await supabaseClient
+                    .from("Planung")
+                    .delete()
+                    .eq(
+                        "fahrer",
+                        aktuellerFahrer
+                    )
+                    .eq(
+                        "datum",
+                        aktuellesDatum
+                    );
+
+            if (error) {
+
+                console.log(error);
+
+                zeigeMeldung(
+                    "❌ Fehler beim Entfernen"
+                );
+
+                return;
+
+            }
+
+            ladePlan();
+
+            schliessenModal();
+
+            zeigeMeldung(
+                "✅ Eintrag entfernt"
+            );
+
+        }
+
+    );
+
+}
 async function speicherePlanEintrag(
     key,
     art,
