@@ -1894,7 +1894,7 @@ function schliesseDienstStatus() {
 }
 async function dienstStatusSpeichern() {
 
-const dienstID =
+const dienst =
     document.getElementById(
         "dienstStatusSelect"
     ).value;
@@ -1909,11 +1909,11 @@ const statusDatum =
     ).value;
 console.log(
     "DIENST",
-    dienstID
+    dienst
 );
 console.log(
     "Dienst:",
-    dienstID
+    dienst
 );
 
 console.log(
@@ -1946,8 +1946,8 @@ const { data, error } =
 
         })
         .eq(
-            "id",
-            Number(dienstID)
+            "bezeichnung",
+            dienst
         )
         .select();
 console.log(data);
