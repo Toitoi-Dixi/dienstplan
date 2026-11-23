@@ -1364,6 +1364,7 @@ await ladeFehlzeiten();
 await ladeFahrer();
 await ladeAlleFahrer();
  ladePlan ();
+    starteRealtime();
 };
 async function ladeWochenmatrix() {
 
@@ -2483,5 +2484,29 @@ function aktuelleAbwesenheiten() {
     document.getElementById(
         "aktuellAbwesendOverlay"
     ).style.display = "flex";
+
+}
+function starteRealtime() {
+
+    supabaseClient
+        .channel(
+            "planung-realtime"
+        )
+        .on(
+            "postgres_changes",
+            {
+                event: "*",
+                schema: "public"
+            },
+            async () => {
+
+                await ladePlanung();
+                await ladeFehlzeiten();
+
+                ladePlan();
+
+            }
+        )
+        .subscribe();
 
 }
