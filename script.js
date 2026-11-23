@@ -176,7 +176,9 @@ function toggleFuhrpark() {
 }
 
 function zeigeKonflikt(
+    titel,
     text,
+    buttonText,
     callback
 ) {
 
@@ -184,15 +186,26 @@ function zeigeKonflikt(
         callback;
 
     document.getElementById(
+        "konfliktTitel"
+    ).textContent =
+        titel;
+
+    document.getElementById(
         "konfliktText"
-    ).innerHTML = text;
+    ).innerHTML =
+        text;
+
+    document.getElementById(
+        "konfliktButton"
+    ).textContent =
+        buttonText;
 
     document.getElementById(
         "konfliktOverlay"
-    ).style.display = "flex";
+    ).style.display =
+        "flex";
 
 }
-
 function konfliktFortfahren() {
 console.log(
     "FORTFAHREN"
@@ -779,56 +792,56 @@ function schliessenModal() {
 }
 function entferneEintrag() {
 
-    zeigeKonflikt(
+zeigeKonflikt(
 
-        "Eintrag wirklich entfernen?",
+    "Eintrag entfernen",
 
-        async function () {
+    "Eintrag wirklich entfernen?",
 
-            const key =
-                getKey(
-                    aktuellerFahrer,
+    "Entfernen",
+
+    async function () {
+
+        const key =
+            getKey(
+                aktuellerFahrer,
+                aktuellesDatum
+            );
+
+        delete plan[key];
+
+        const { error } =
+            await supabaseClient
+                .from("Planung")
+                .delete()
+                .eq(
+                    "fahrer",
+                    aktuellerFahrer
+                )
+                .eq(
+                    "datum",
                     aktuellesDatum
                 );
 
-            delete plan[key];
+        if (error) {
 
-            const { error } =
-                await supabaseClient
-                    .from("Planung")
-                    .delete()
-                    .eq(
-                        "fahrer",
-                        aktuellerFahrer
-                    )
-                    .eq(
-                        "datum",
-                        aktuellesDatum
-                    );
+            console.log(error);
 
-            if (error) {
-
-                console.log(error);
-
-                zeigeMeldung(
-                    "❌ Fehler beim Entfernen"
-                );
-
-                return;
-
-            }
-
-            ladePlan();
-
-            schliessenModal();
-
-            zeigeMeldung(
-                "✅ Eintrag entfernt"
-            );
+            return;
 
         }
 
-    );
+        ladePlan();
+
+        schliessenModal();
+
+        zeigeMeldung(
+            "✅ Eintrag entfernt"
+        );
+
+    }
+
+);
 
 }
 async function speicherePlanEintrag(
@@ -926,21 +939,27 @@ if (
 
     if (konflikt) {
 
-        zeigeKonflikt(
-            "Dienst bereits verplant bei:<br><br>" +
-            konflikt,
-            async function () {
+   zeigeKonflikt(
 
-                await speicherePlanEintrag(
-                    key,
-                    art,
-                    dienst,
-                    fahrzeug,
-                    alterEintrag
-                );
+    "Dienst bereits verplant",
 
-            }
+    konflikt,
+
+    "Trotzdem speichern",
+
+    async function () {
+
+        await speicherePlanEintrag(
+            key,
+            art,
+            dienst,
+            fahrzeug,
+            alterEintrag
         );
+
+    }
+
+);
 
         return;
 
