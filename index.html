@@ -51,6 +51,12 @@
     Fehlzeit erfassen
 
 </button>
+     <button
+    onclick="aktuelleAbwesenheiten()">
+
+    Aktuell Abwesend
+
+</button>   
         <hr>
           <button onclick="fuhrpark()">
             🚚 Fuhrpark
@@ -199,6 +205,34 @@ Schließen
 </div>
 
 </div>
+   <div id="aktuellAbwesendOverlay"
+     class="modalOverlay">
+
+    <div class="modal">
+
+        <h2>
+
+            Aktuell abwesende Fahrer
+
+        </h2>
+
+        <div id="aktuellAbwesendListe">
+        </div>
+
+        <div class="modalButtons">
+
+            <button
+                onclick="schliesseAktuellAbwesend()">
+
+                Schließen
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div> 
     <div id="fahrerNeuOverlay"
         class="modalOverlay">
         <div class="modal">
