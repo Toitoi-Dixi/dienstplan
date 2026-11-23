@@ -1958,3 +1958,108 @@ zeigeMeldung(
     "✅ Status geändert"
 );
 }
+function dienstAnlegen() {
+
+    document.getElementById(
+        "dienstNeuOverlay"
+    ).style.display = "flex";
+
+}
+
+function schliesseNeuenDienst() {
+
+    document.getElementById(
+        "dienstNeuOverlay"
+    ).style.display = "none";
+
+}
+async function dienstSpeichern() {
+
+    const bezeichnung =
+        document.getElementById(
+            "neuBezeichnung"
+        ).value.trim();
+
+    const poi =
+        document.getElementById(
+            "neuPOI"
+        ).value.trim();
+
+    const art =
+        document.getElementById(
+            "neuArt"
+        ).value.trim();
+
+    if (
+        !bezeichnung ||
+        !poi ||
+        !art
+    ) {
+
+        zeigeMeldung(
+            "⚠️ Alle Felder ausfüllen"
+        );
+
+        return;
+
+    }
+
+    const { error } =
+        await supabaseClient
+            .from("Dienste")
+            .insert([
+                {
+                    bezeichnung:
+                        bezeichnung,
+
+                    poi:
+                        poi,
+
+                    art:
+                        art,
+
+                    status:
+                        "Aktiv"
+                }
+            ]);
+
+    if (error) {
+
+        console.log(error);
+
+        zeigeMeldung(
+            "❌ Fehler beim Speichern"
+        );
+
+        return;
+
+    }
+
+    document.getElementById(
+        "neuBezeichnung"
+    ).value = "";
+
+    document.getElementById(
+        "neuPOI"
+    ).value = "";
+
+    document.getElementById(
+        "neuArt"
+    ).value = "";
+
+    await ladeDienste();
+
+    schliesseNeuenDienst();
+
+    zeigeMeldung(
+        "✅ Dienst gespeichert"
+    );
+
+}
+function schliesseNeuenDienst() {
+
+    document.getElementById(
+        "dienstNeuOverlay"
+    ).style.display = "none";
+
+}
