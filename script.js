@@ -1984,6 +1984,11 @@ async function dienstSpeichern() {
         document.getElementById(
             "neuPOI"
         ).value.trim();
+    
+     const wochentag =
+        document.getElementById(
+            "neuWochentag"
+        ).value.trim();
 
     const art =
         document.getElementById(
@@ -1993,6 +1998,7 @@ async function dienstSpeichern() {
     if (
         !bezeichnung ||
         !poi ||
+        !wochentag ||
         !art
     ) {
 
@@ -2014,6 +2020,8 @@ async function dienstSpeichern() {
 
                     poi:
                         poi,
+                    wochentag:
+                        wochentag,
 
                     art:
                         art,
@@ -2041,6 +2049,10 @@ async function dienstSpeichern() {
 
     document.getElementById(
         "neuPOI"
+    ).value = "";
+
+      document.getElementById(
+        "neuWochentag"
     ).value = "";
 
     document.getElementById(
