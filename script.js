@@ -1908,20 +1908,14 @@ const statusDatum =
         "dienstStatusDatum"
     ).value;
 
-    console.log(
-    "DIENST",
-    dienst
-);
-
-console.log(
-    "Status:",
-    neuerStatus
-);
-
-console.log(
-    "Datum:",
-    statusDatum
-);
+const test =
+    await supabaseClient
+        .from("Dienste")
+        .select("*")
+        .eq(
+            "bezeichnung",
+            dienst
+        );
 
 const { data, error } =
     await supabaseClient
@@ -1947,14 +1941,6 @@ const { data, error } =
             dienst
         )
         .select();
-console.log(data);
-
-console.log(
-    "ERROR",
-    error
-);
-
-
 
 await ladeDienste();
 
