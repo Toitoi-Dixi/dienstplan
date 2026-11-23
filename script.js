@@ -1958,7 +1958,7 @@ console.log(
 );
 
 
-}
+
 await ladeDienste();
 
 document.getElementById(
@@ -1974,4 +1974,4 @@ schliesseDienstStatus();
 zeigeMeldung(
     "✅ Status geändert"
 );
-
+}
