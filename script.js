@@ -2394,3 +2394,69 @@ function aktuellAbwesendeAnzeigen() {
     );
 
 }
+function schliesseAktuellAbwesend() {
+
+    document.getElementById(
+        "aktuellAbwesendOverlay"
+    ).style.display = "none";
+
+}
+function aktuelleAbwesenheiten() {
+
+    const container =
+        document.getElementById(
+            "aktuellAbwesendListe"
+        );
+
+    container.innerHTML = "";
+
+    const heute =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+    fehlzeiten.forEach(
+        eintrag => {
+
+            if (
+                heute >= eintrag.von &&
+                heute <= eintrag.bis
+            ) {
+
+                container.innerHTML +=
+
+                    "<div class='offen'>" +
+
+                    "<b>" +
+                    eintrag.fahrer +
+                    "</b><br>" +
+
+                    eintrag.art +
+                    "<br>" +
+
+                    eintrag.von +
+                    " bis " +
+                    eintrag.bis +
+
+                    "</div>";
+
+            }
+
+        }
+    );
+
+    if (
+        container.innerHTML === ""
+    ) {
+
+        container.innerHTML =
+
+            "Derzeit keine aktiven Abwesenheiten.";
+
+    }
+
+    document.getElementById(
+        "aktuellAbwesendOverlay"
+    ).style.display = "flex";
+
+}
