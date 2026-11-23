@@ -23,7 +23,7 @@ let abwesenheitsarten = [];
 let plan = {};
 let konfliktCallback = null;
 let dienste = [];
-let fehlzeiten[];
+let fehlzeiten = [];
 
 /* ==========================
    HILFSFUNKTIONEN
