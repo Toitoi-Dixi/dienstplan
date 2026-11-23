@@ -1898,7 +1898,15 @@ const dienst =
     document.getElementById(
         "dienstStatusSelect"
     ).value;
+const neuerStatus =
+    document.getElementById(
+        "dienstStatusNeu"
+    ).value;
 
+const statusDatum =
+    document.getElementById(
+        "dienstStatusDatum"
+    ).value;
 console.log(
     "DIENST",
     dienst
