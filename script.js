@@ -1929,12 +1929,27 @@ console.log(
 const { data, error } =
     await supabaseClient
         .from("Dienste")
-        .select("*")
+        .update({
+
+            status:
+                neuerStatus,
+
+            aktiv_ab:
+                neuerStatus === "Aktiv"
+                    ? statusDatum
+                    : null,
+
+            inaktiv_ab:
+                neuerStatus === "Inaktiv"
+                    ? statusDatum
+                    : null
+
+        })
         .eq(
             "bezeichnung",
             dienst
-        );
-
+        )
+        .select();
 console.log(data);
 
 console.log(
@@ -1944,4 +1959,27 @@ console.log(
 
 
 }
+await ladeDienste();
 
+document.getElementById(
+    "dienstStatusDatum"
+).value = "";
+
+document.getElementById(
+    "dienstStatusSelect"
+).selectedIndex = 0;
+
+schliesseDienstStatus();
+
+zeigeMeldung(
+    "✅ Status geändert"
+);
+document.getElementById(
+    "dienstStatusSelect"
+).selectedIndex = 0;
+
+document.getElementById(
+    "dienstStatusDatum"
+).value = "";
+
+schliesseDienstStatus();
