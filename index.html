@@ -297,6 +297,43 @@ Schließen
     </div>
 </div>
 </div>  
+       <div id="dienstNeuOverlay"
+        class="modalOverlay">
+        <div class="modal">
+            <h2>Dienst anlegen</h2>
+            <label>Bezeichnung</label>
+            <input
+                type="text"
+                id="neuBezeichnung">
+            <label>POI</label>
+            <input
+                type="text"
+                id="neuPOI">
+    <label>Art</label>
+
+    <select id="neuArt">
+
+    <option value="Fix">
+        Fix
+    </option>
+
+    <option value="Bedarf">
+        Bedarf
+    </option>
+
+</select>
+    <div class="modalButtons">
+        <button
+            onclick="dienstSpeichern()">
+            Speichern
+        </button>
+        <button
+            onclick="schliesseNeuenDienst()">
+            Abbrechen
+        </button>
+    </div>
+</div>
+    </div>
      <div id="dienstStatusOverlay"
         class="modalOverlay">
         <div class="modal">
