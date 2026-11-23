@@ -1868,7 +1868,7 @@ function dienstStatusAendern() {
                 );
 
             option.value =
-                dienst.bezeichnung;
+                dienst.id;
 
             option.textContent =
                 dienst.bezeichnung;
@@ -1894,7 +1894,7 @@ function schliesseDienstStatus() {
 }
 async function dienstStatusSpeichern() {
 
-const dienst =
+const dienstID =
     document.getElementById(
         "dienstStatusSelect"
     ).value;
@@ -1946,8 +1946,8 @@ const { data, error } =
 
         })
         .eq(
-            "bezeichnung",
-            dienst
+            "id",
+            dienstID
         )
         .select();
 console.log(data);
