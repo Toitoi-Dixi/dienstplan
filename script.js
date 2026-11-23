@@ -128,6 +128,53 @@ function zeigeMeldung(text) {
 
     }, 3000);
 }
+function toggleAdmin() {
+
+    const menu =
+        document.getElementById(
+            "adminMenu"
+        );
+
+    if (
+        menu.style.display ===
+        "none"
+    ) {
+
+        menu.style.display =
+            "block";
+
+    } else {
+
+        menu.style.display =
+            "none";
+
+    }
+
+}
+function toggleFuhrpark() {
+
+    const menu =
+        document.getElementById(
+            "fuhrparkMenu"
+        );
+
+    if (
+        menu.style.display ===
+        "none"
+    ) {
+
+        menu.style.display =
+            "block";
+
+    } else {
+
+        menu.style.display =
+            "none";
+
+    }
+
+}
+
 function zeigeKonflikt(
     text,
     callback
