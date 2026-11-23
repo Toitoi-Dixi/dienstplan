@@ -1925,7 +1925,19 @@ console.log(
     "Datum:",
     statusDatum
 );
+const test =
+    await supabaseClient
+        .from("Dienste")
+        .select("*")
+        .eq(
+            "id",
+            dienstID
+        );
 
+console.log(
+    "TEST",
+    test.data
+);
 const { data, error } =
     await supabaseClient
         .from("Dienste")
