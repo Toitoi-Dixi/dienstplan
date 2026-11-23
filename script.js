@@ -1743,7 +1743,6 @@ const select =
     );
 
 select.innerHTML = "";
-    console.log(fahrzeugStammdaten);
 
     fahrzeugStammdaten.forEach(
     fahrzeug => {
