@@ -1359,6 +1359,7 @@ await ladeDienste();
 await ladeFahrzeuge();
 await ladeWochenmatrix();
 await ladePlanung();
+await ladeFehlzeiten(); 
 await ladeFahrer();
 await ladeAlleFahrer();
  ladePlan ();
@@ -2272,6 +2273,65 @@ async function fehlzeitSpeichern() {
 
     zeigeMeldung(
         "✅ Fehlzeit gespeichert"
+    );
+
+}
+async function ladeFehlzeiten() {
+
+    const { data, error } =
+        await supabaseClient
+            .from("Fehlzeiten_Log")
+            .select("*");
+
+    if (error) {
+
+        console.log(error);
+        return;
+
+    }
+
+    data.forEach(
+        fehlzeit => {
+
+            let datum =
+                new Date(
+                    fehlzeit.von
+                );
+
+            const bis =
+                new Date(
+                    fehlzeit.bis
+                );
+
+            while (
+                datum <= bis
+            ) {
+
+                const datumText =
+                    datum
+                        .toISOString()
+                        .split("T")[0];
+
+                const key =
+                    getKey(
+                        fehlzeit.fahrer,
+                        datumText
+                    );
+
+                plan[key] = {
+                    art:
+                        fehlzeit.art,
+                    dienst: "",
+                    fahrzeug: ""
+                };
+
+                datum.setDate(
+                    datum.getDate() + 1
+                );
+
+            }
+
+        }
     );
 
 }
