@@ -2337,7 +2337,7 @@ fehlzeiten = data;
 
         }
     );
-aktuellAbwesendeAnzeigen();
+
 }
 function aktuellAbwesendeAnzeigen() {
 
