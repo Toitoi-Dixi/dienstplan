@@ -1909,11 +1909,11 @@ const statusDatum =
     ).value;
 console.log(
     "DIENST",
-    dienst
+    dienstID
 );
 console.log(
     "Dienst:",
-    dienst
+    dienstID
 );
 
 console.log(
@@ -1947,7 +1947,7 @@ const { data, error } =
         })
         .eq(
             "id",
-            dienstID
+            Number(dienstID)
         )
         .select();
 console.log(data);
