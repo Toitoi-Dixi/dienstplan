@@ -2208,7 +2208,32 @@ async function fehlzeitSpeichern() {
         return;
 
     }
+const konflikt =
+    fehlzeiten.find(
+        f =>
 
+            f.fahrer === fahrer &&
+
+            (
+                new Date(von) <=
+                new Date(f.bis)
+            ) &&
+
+            (
+                new Date(bis) >=
+                new Date(f.von)
+            )
+    );
+
+if (konflikt) {
+
+    zeigeMeldung(
+        "❌ Für diesen Fahrer existiert bereits eine Fehlzeit im gewählten Zeitraum"
+    );
+
+    return;
+
+}
     const tage =
         Math.floor(
             (
