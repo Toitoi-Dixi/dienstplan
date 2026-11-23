@@ -23,6 +23,7 @@ let abwesenheitsarten = [];
 let plan = {};
 let konfliktCallback = null;
 let dienste = [];
+let fehlzeiten[];
 
 /* ==========================
    HILFSFUNKTIONEN
@@ -2285,7 +2286,7 @@ async function ladeFehlzeiten() {
         await supabaseClient
             .from("Fehlzeiten_Log")
             .select("*");
-
+fehlzeiten = data;
     if (error) {
 
         console.log(error);
@@ -2331,6 +2332,61 @@ async function ladeFehlzeiten() {
                 datum.setDate(
                     datum.getDate() + 1
                 );
+
+            }
+
+        }
+    );
+aktuellAbwesendeAnzeigen();
+}
+function aktuellAbwesendeAnzeigen() {
+
+    const container =
+        document.getElementById(
+            "aktuellAbwesend"
+        );
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    const heute =
+        new Date();
+
+    fehlzeiten.forEach(
+        eintrag => {
+
+            const von =
+                new Date(
+                    eintrag.von
+                );
+
+            const bis =
+                new Date(
+                    eintrag.bis
+                );
+
+            if (
+                heute >= von &&
+                heute <= bis
+            ) {
+
+                container.innerHTML +=
+
+                    "<div class='offen'>" +
+
+                    "<b>" +
+                    eintrag.fahrer +
+                    "</b><br>" +
+
+                    eintrag.art +
+                    "<br>" +
+
+                    eintrag.von +
+                    " bis " +
+                    eintrag.bis +
+
+                    "</div>";
 
             }
 
