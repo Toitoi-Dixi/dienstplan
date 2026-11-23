@@ -2014,9 +2014,11 @@ const dienstVorhanden =
         d =>
             d.bezeichnung
                 ?.toLowerCase()
+                .replace(/\s+/g, " ")
                 .trim() ===
             bezeichnung
                 .toLowerCase()
+                .replace(/\s+/g, " ")
                 .trim()
     );
 
