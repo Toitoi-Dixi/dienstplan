@@ -882,9 +882,7 @@ async function speicherePlanEintrag(
 async function speichernZelle() {
 
     const art =
-        document.getElementById(
-            "artInput"
-        ).value;
+     "Dienst";
 
     const dienst =
         document.getElementById(
