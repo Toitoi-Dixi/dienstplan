@@ -1348,28 +1348,20 @@ const datum =
             let text2 = "";
             let klasse = "";
 
-            if (daten.art === "Urlaub") {
+      if (
+    daten.art &&
+    daten.art !== "Dienst"
+) {
 
-                text1 = "Urlaub";
-                klasse = "urlaub";
+    text1 =
+        daten.art;
 
-            } else if (daten.art === "Krank") {
+    klasse =
+        "urlaub";
 
-                text1 = "Krank";
-                klasse = "krank";
-
-            } else if (daten.art === "Zeitausgleich") {
-
-                text1 = "ZA";
-                klasse = "za";
-
-            } else if (daten.art === "Frei") {
-
-                text1 = "Frei";
-                klasse = "frei";
-
-  } else {
-
+}
+else {
+     
     text1 = daten.dienst;
 
     if (!daten.fahrzeug) {
