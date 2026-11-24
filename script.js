@@ -2334,7 +2334,7 @@ option.value =
  art.Bezeichnung;
 
 option.textContent =
-   ar.Bezeichnung;
+   art.Bezeichnung;
 
 artSelect.appendChild(
     option
