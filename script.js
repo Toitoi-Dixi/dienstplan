@@ -2297,10 +2297,10 @@ function fehlzeitErfassen() {
     );
 
 option.value =
-    "Dienst";
+ art.Bezeichnung;
 
 option.textContent =
-    "Dienst";
+   ar.Bezeichnung;
 
 artSelect.appendChild(
     option
