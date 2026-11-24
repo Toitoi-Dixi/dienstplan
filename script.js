@@ -1417,22 +1417,6 @@ const datum =
         fahrzeug: eintrag?.fahrzeug || ""
     };
 }
-            const abwesenheit =
-                findeFehlzeit(
-                    fahrer.name,
-                    datum
-                );
-
-            if (
-                abwesenheit &&
-                daten.art === "Dienst"
-            ) {
-                daten = {
-                    art: abwesenheit.art,
-                    dienst: daten.dienst,
-                    fahrzeug: daten.fahrzeug
-                };
-            }
             const planEintrag =
     plan[
         getKey(
