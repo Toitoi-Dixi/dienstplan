@@ -2592,6 +2592,28 @@ ladePlan();
     );
 
 }
+async function fehlzeitLoeschen(id) {
+    const { error } =
+        await supabaseClient
+            .from("Fehlzeiten_Log")
+            .delete()
+            .eq("id", id);
+
+    if (error) {
+        console.log(error);
+        zeigeMeldung(
+            "❌ Fehlzeit konnte nicht gelöscht werden"
+        );
+        return;
+    }
+
+    await ladeFehlzeiten();
+    ladePlan();
+
+    zeigeMeldung(
+        "✅ Fehlzeit gelöscht"
+    );
+}
 async function ladeFehlzeiten() {
 
     const { data, error } =
@@ -2694,9 +2716,12 @@ function aktuelleAbwesenheiten() {
 
                     "<div class='offen'>" +
 
-                    "<b>" +
-                    eintrag.fahrer +
-                    "</b><br>" +
+                 "<b>" +
+eintrag.fahrer +
+"</b>" +
+"<button onclick=\"fehlzeitLoeschen(" +
+eintrag.id +
+")\">Löschen</button><br>" +
 
                     eintrag.art +
                     "<br>" +
