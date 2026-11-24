@@ -207,9 +207,7 @@ function zeigeKonflikt(
 
 }
 function konfliktFortfahren() {
-console.log(
-    "FORTFAHREN"
-);
+
     document.getElementById(
         "konfliktOverlay"
     ).style.display = "none";
