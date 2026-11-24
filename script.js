@@ -2625,8 +2625,7 @@ function aktuelleAbwesenheiten() {
         eintrag => {
 
             if (
-                heute >= eintrag.von &&
-                heute <= eintrag.bis
+                bis >= heute
             ) {
 
                 container.innerHTML +=
