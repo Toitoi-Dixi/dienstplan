@@ -1651,13 +1651,6 @@ async function ladeAlleFahrer() {
 }
 async function ladeAbwesenheitsarten() {
 
-    const artSelect =
-        document.getElementById(
-            "artInput"
-        );
-
-    artSelect.innerHTML = "";
-
     const { data, error } =
         await supabaseClient
             .from("Abwesenheitsarten")
@@ -1666,42 +1659,14 @@ async function ladeAbwesenheitsarten() {
     if (error) {
 
         console.log(error);
+
         return;
 
     }
-abwesenheitsarten = data;
-    const dienstOption =
-    document.createElement(
-        "option"
-    );
 
-dienstOption.value =
-    "Dienst";
+    abwesenheitsarten =
+        data;
 
-dienstOption.textContent =
-    "Dienst";
-
-artSelect.appendChild(
-    dienstOption
-);
-    data.forEach(art => {
-
-        const option =
-            document.createElement(
-                "option"
-            );
-
-        option.value =
-            art.bezeichnung;
-
-        option.textContent =
-            art.bezeichnung;
-
-        artSelect.appendChild(
-            option
-        );
-
-    });
 }
 async function ladeDienste() {
 
