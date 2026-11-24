@@ -47,6 +47,14 @@ function istAbwesenheit(art) {
     );
 
 }
+function findeFehlzeit(fahrerName, datum) {
+    return fehlzeiten.find(
+        fehlzeit =>
+            fehlzeit.fahrer === fahrerName &&
+            fehlzeit.von <= datum &&
+            fehlzeit.bis >= datum
+    ) || null;
+}
 function findeDienstKonflikt(
     dienst,
     datum,
@@ -90,13 +98,28 @@ function istDienstVerplant(
         const eintrag =
             plan[key];
 
+        const trenner =
+            key.lastIndexOf("_");
+
+        const fahrer =
+            key.slice(
+                0,
+                trenner
+            );
+
         const planDatum =
-            key.split("_")[1];
+            key.slice(
+                trenner + 1
+            );
 
         if (
             planDatum === datum &&
             eintrag.art === "Dienst" &&
-            eintrag.dienst === dienst
+            eintrag.dienst === dienst &&
+            !findeFehlzeit(
+                fahrer,
+                planDatum
+            )
         ) {
 
             return true;
@@ -1082,7 +1105,60 @@ function offeneDiensteErmitteln() {
         }
 
     }
+fehlzeiten.forEach(fehlzeit => {
+    let datum = new Date(`${fehlzeit.von}T00:00:00`);
+    const bis = new Date(`${fehlzeit.bis}T00:00:00`);
 
+    while (datum <= bis) {
+        const datumText =
+            datum.getFullYear() +
+            "-" +
+            String(datum.getMonth() + 1).padStart(2, "0") +
+            "-" +
+            String(datum.getDate()).padStart(2, "0");
+
+        const planEintrag =
+            plan[getKey(fehlzeit.fahrer, datumText)];
+
+        const wochentag = [
+            "Sonntag",
+            "Montag",
+            "Dienstag",
+            "Mittwoch",
+            "Donnerstag",
+            "Freitag",
+            "Samstag"
+        ][datum.getDay()];
+
+        const wochenEintrag =
+            wochenmatrix.find(
+                eintrag =>
+                    eintrag.fahrer === fehlzeit.fahrer &&
+                    eintrag.wochentag === wochentag
+            );
+
+        const betroffeneDienste = [
+            planEintrag?.art === "Dienst"
+                ? planEintrag.dienst
+                : "",
+            wochenEintrag?.dienst || ""
+        ];
+
+        betroffeneDienste.forEach(dienst => {
+            if (
+                dienst &&
+                !istDienstVerplant(dienst, datumText)
+            ) {
+                liste.push({
+                    datum: datumText,
+                    dienst: dienst
+                });
+            }
+        });
+
+        datum.setDate(datum.getDate() + 1);
+    }
+});
 const eindeutig = [];
 
 liste.forEach(eintrag => {
@@ -1341,7 +1417,22 @@ const datum =
         fahrzeug: eintrag?.fahrzeug || ""
     };
 }
+            const abwesenheit =
+                findeFehlzeit(
+                    fahrer.name,
+                    datum
+                );
 
+            if (
+                abwesenheit &&
+                daten.art === "Dienst"
+            ) {
+                daten = {
+                    art: abwesenheit.art,
+                    dienst: daten.dienst,
+                    fahrzeug: daten.fahrzeug
+                };
+            }
             let text1 = "";
             let text2 = "";
             let klasse = "";
@@ -2490,58 +2581,14 @@ async function ladeFehlzeiten() {
         await supabaseClient
             .from("Fehlzeiten_Log")
             .select("*");
-fehlzeiten = data;
+
     if (error) {
-
         console.log(error);
+        fehlzeiten = [];
         return;
-
     }
 
-    data.forEach(
-        fehlzeit => {
-
-            let datum =
-                new Date(
-                    fehlzeit.von
-                );
-
-            const bis =
-                new Date(
-                    fehlzeit.bis
-                );
-
-            while (
-                datum <= bis
-            ) {
-
-                const datumText =
-                    datum
-                        .toISOString()
-                        .split("T")[0];
-
-                const key =
-                    getKey(
-                        fehlzeit.fahrer,
-                        datumText
-                    );
-
-                plan[key] = {
-                    art:
-                        fehlzeit.art,
-                    dienst: "",
-                    fahrzeug: ""
-                };
-
-                datum.setDate(
-                    datum.getDate() + 1
-                );
-
-            }
-
-        }
-    );
-
+    fehlzeiten = data || [];
 }
 function aktuellAbwesendeAnzeigen() {
 
