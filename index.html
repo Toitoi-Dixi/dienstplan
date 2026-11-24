@@ -258,16 +258,19 @@ Schließen
         <div id="aktuellAbwesendListe">
         </div>
 
-        <div class="modalButtons">
+       <div class="modalButtons">
+    <button
+        id="fehlzeitLoeschenButton"
+        type="button"
+        onclick="ausgewaehlteFehlzeitLoeschen()"
+        disabled>
+        Löschen
+    </button>
 
-            <button
-                onclick="schliesseAktuellAbwesend()">
-
-                Schließen
-
-            </button>
-
-        </div>
+    <button onclick="schliesseAktuellAbwesend()">
+        Schließen
+    </button>
+</div>
 
     </div>
 
