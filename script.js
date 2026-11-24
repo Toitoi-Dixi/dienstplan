@@ -2249,14 +2249,8 @@ async function ladeStandorte() {
     const select =
         document.getElementById("neuStandort");
 
-    select.innerHTML = "";
-
-    const platzhalter =
-        document.createElement("option");
-
-    platzhalter.value = "";
-    platzhalter.textContent = "Standort auswählen";
-    select.appendChild(platzhalter);
+    select.innerHTML =
+        '<option value="">Standort auswählen</option>';
 
     const { data, error } =
         await supabaseClient
@@ -2265,18 +2259,20 @@ async function ladeStandorte() {
             .eq("aktiv", true)
             .order("name");
 
+    console.log("Standorte:", data);
+    console.log("Fehler:", error);
+
     if (error) {
-        console.error("Standorte konnten nicht geladen werden:", error);
-        zeigeMeldung("❌ Standorte konnten nicht geladen werden");
         return false;
     }
 
-    (data || []).forEach(standort => {
+    data.forEach(standort => {
         const option =
             document.createElement("option");
 
         option.value = standort.name;
         option.textContent = standort.name;
+
         select.appendChild(option);
     });
 
