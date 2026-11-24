@@ -1954,7 +1954,7 @@ async function fahrzeugSpeichern() {
         ).value.trim();
 const standort =
         document.getElementById(
-            "neuStandort"
+            "neuFahrzeugStandort"
         ).value.trim();
 if (
     !kennzeichen ||
@@ -2017,7 +2017,7 @@ if (error) {
         "neuKategorie"
     ).value = "";
        document.getElementById(
-        "neuStandort"
+        "neuFahrzeugStandort"
     ).value = "";
 
     schliesseNeuesFahrzeug();
