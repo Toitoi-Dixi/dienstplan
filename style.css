@@ -88,7 +88,24 @@ th {
     z-index: 3;
     min-width: 120px;
 }
+#thead tr:first-child th {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
 
+#thead tr:nth-child(2) th {
+    position: sticky;
+    top: 28px;
+    z-index: 4;
+}
+
+/* Fahrerspalte beim horizontalen Scrollen links fixieren */
+#thead tr:nth-child(2) th.fahrerkopf,
+#thead tr:first-child th:first-child {
+    left: 0;
+    z-index: 6;
+}
 .fahrerkopf {
     min-width: 220px;
 }
