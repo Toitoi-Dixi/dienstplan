@@ -711,24 +711,6 @@ document.getElementById(
    MODAL
 ========================== */
 
-function artGeaendert() {
-
-    const art =
-        document.getElementById("artInput").value;
-
-    const block =
-        document.getElementById("dienstBlock");
-if (
-    istAbwesenheit(art)
-)
-   {
-        block.style.display = "none";
-    }
-    else {
-        block.style.display = "block";
-    }
-}
-
 async function zelleBearbeiten(name, datum) {
 
     aktuellerFahrer = name;
@@ -775,9 +757,6 @@ await ladeDienste();
     document.getElementById("fahrzeugInput").value =
         plan[k].fahrzeug || "";
 
-
-
-    artGeaendert();
 
     document.getElementById(
         "modalOverlay"
