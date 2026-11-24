@@ -2331,10 +2331,10 @@ function fehlzeitErfassen() {
     );
 
 option.value =
- art.Bezeichnung;
+ art.bezeichnung;
 
 option.textContent =
-   art.Bezeichnung;
+   art.bezeichnung;
 
 artSelect.appendChild(
     option
