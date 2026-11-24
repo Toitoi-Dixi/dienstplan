@@ -748,9 +748,6 @@ await ladeDienste();
         };
     }
 
-    document.getElementById("artInput").value =
-        plan[k].art || "Dienst";
-
     document.getElementById("dienstInput").value =
         plan[k].dienst || "";
 
