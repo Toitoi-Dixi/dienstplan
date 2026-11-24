@@ -754,7 +754,12 @@ await ladeDienste();
     document.getElementById("fahrzeugInput").value =
         plan[k].fahrzeug || "";
 
+document.getElementById(
+    "artInput"
+).value =
+    plan[k].art || "Dienst";
 
+artGeaendert();
     document.getElementById(
         "modalOverlay"
     ).style.display = "flex";
@@ -765,6 +770,33 @@ function schliessenModal() {
     document.getElementById(
         "modalOverlay"
     ).style.display = "none";
+}
+function artGeaendert() {
+
+    const art =
+        document.getElementById(
+            "artInput"
+        ).value;
+
+    const block =
+        document.getElementById(
+            "dienstBlock"
+        );
+
+    if (
+        art === "Frei"
+    ) {
+
+        block.style.display =
+            "none";
+
+    } else {
+
+        block.style.display =
+            "block";
+
+    }
+
 }
 function entferneEintrag() {
 
@@ -881,8 +913,10 @@ async function speicherePlanEintrag(
 }
 async function speichernZelle() {
 
-    const art =
-     "Dienst";
+  const art =
+    document.getElementById(
+        "artInput"
+    ).value; 
 
     const dienst =
         document.getElementById(
