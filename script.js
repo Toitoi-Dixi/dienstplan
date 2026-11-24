@@ -2135,9 +2135,7 @@ await ladeFahrzeuge();
 }
 
 
-function dienstAnlegen() {
-    zeigeMeldung("Dienst anlegen folgt");
-}
+
 
 function dienstStatusAendern() {
 
@@ -2247,60 +2245,77 @@ zeigeMeldung(
     "✅ Status geändert"
 );
 }
-function dienstAnlegen() {
+async function ladeStandorte() {
+    const select =
+        document.getElementById("neuStandort");
 
-    document.getElementById(
-        "dienstNeuOverlay"
-    ).style.display = "flex";
+    select.innerHTML = "";
 
+    const platzhalter =
+        document.createElement("option");
+
+    platzhalter.value = "";
+    platzhalter.textContent = "Standort auswählen";
+    select.appendChild(platzhalter);
+
+    const { data, error } =
+        await supabaseClient
+            .from("Standorte")
+            .select("name")
+            .eq("aktiv", true)
+            .order("name");
+
+    if (error) {
+        console.error("Standorte konnten nicht geladen werden:", error);
+        zeigeMeldung("❌ Standorte konnten nicht geladen werden");
+        return false;
+    }
+
+    (data || []).forEach(standort => {
+        const option =
+            document.createElement("option");
+
+        option.value = standort.name;
+        option.textContent = standort.name;
+        select.appendChild(option);
+    });
+
+    return true;
+}
+
+async function dienstAnlegen() {
+    const erfolgreich = await ladeStandorte();
+
+    if (erfolgreich) {
+        document.getElementById(
+            "dienstNeuOverlay"
+        ).style.display = "flex";
+    }
 }
 
 function schliesseNeuenDienst() {
-
     document.getElementById(
         "dienstNeuOverlay"
     ).style.display = "none";
-
 }
+
 async function dienstSpeichern() {
-
     const bezeichnung =
-        document.getElementById(
-            "neuBezeichnung"
-        ).value.trim();
+        document.getElementById("neuBezeichnung").value.trim();
 
-    const poi =
-        document.getElementById(
-            "neuPOI"
-        ).value.trim();
-    
-     const wochentag =
-        document.getElementById(
-            "neuWochentag"
-        ).value.trim();
+    const standort =
+        document.getElementById("neuStandort").value;
 
     const art =
-        document.getElementById(
-            "neuArt"
-        ).value.trim();
+        document.getElementById("neuArt").value;
 
-    if (
-        !bezeichnung ||
-        !poi ||
-        !wochentag ||
-        !art
-    ) {
-
-        zeigeMeldung(
-            "⚠️ Alle Felder ausfüllen"
-        );
-
+    if (!bezeichnung || !standort || !art) {
+        zeigeMeldung("⚠️ Alle Felder ausfüllen");
         return;
-
     }
-const dienstVorhanden =
-    dienste.find(
-        d =>
+
+    const dienstVorhanden =
+        dienste.find(d =>
             d.bezeichnung
                 ?.toLowerCase()
                 .replace(/\s+/g, " ")
@@ -2309,81 +2324,36 @@ const dienstVorhanden =
                 .toLowerCase()
                 .replace(/\s+/g, " ")
                 .trim()
-    );
+        );
 
-if (dienstVorhanden) {
+    if (dienstVorhanden) {
+        zeigeMeldung("❌ Dienst existiert bereits");
+        return;
+    }
 
-    zeigeMeldung(
-        "❌ Dienst existiert bereits"
-    );
-
-    return;
-
-}
     const { error } =
         await supabaseClient
             .from("Dienste")
-            .insert([
-                {
-                    bezeichnung:
-                        bezeichnung,
-
-                    poi:
-                        poi,
-                    wochentag:
-                        wochentag,
-
-                    art:
-                        art,
-
-                    status:
-                        "Aktiv"
-                }
-            ]);
+            .insert([{
+                bezeichnung: bezeichnung,
+                standort: standort,
+                art: art,
+                status: "Aktiv"
+            }]);
 
     if (error) {
-
-        console.log(error);
-
-        zeigeMeldung(
-            "❌ Fehler beim Speichern"
-        );
-
+        console.error(error);
+        zeigeMeldung("❌ Fehler beim Speichern");
         return;
-
     }
 
-    document.getElementById(
-        "neuBezeichnung"
-    ).value = "";
-
-    document.getElementById(
-        "neuPOI"
-    ).value = "";
-
-      document.getElementById(
-        "neuWochentag"
-    ).value = "";
-
-    document.getElementById(
-        "neuArt"
-    ).value = "";
+    document.getElementById("neuBezeichnung").value = "";
+    document.getElementById("neuStandort").selectedIndex = 0;
+    document.getElementById("neuArt").selectedIndex = 0;
 
     await ladeDienste();
-
     schliesseNeuenDienst();
-
-    zeigeMeldung(
-        "✅ Dienst gespeichert"
-    );
-
-}
-function schliesseNeuenDienst() {
-
-    document.getElementById(
-        "dienstNeuOverlay"
-    ).style.display = "none";
-
+    zeigeMeldung("✅ Dienst gespeichert");
 }
 function fehlzeitErfassen() {
 
