@@ -2594,26 +2594,31 @@ ladePlan();
 
 }
 async function fehlzeitLoeschen(id) {
-    const { error } =
-        await supabaseClient
-            .from("Fehlzeiten_Log")
-            .delete()
-            .eq("id", id);
+    const { data, error } = await supabaseClient
+        .from("Fehlzeiten_Log")
+        .delete()
+        .eq("id", id)
+        .select("id");
 
     if (error) {
-        console.log(error);
-        zeigeMeldung(
-            "❌ Fehlzeit konnte nicht gelöscht werden"
-        );
+        console.error("Fehlzeit konnte nicht gelöscht werden:", error);
+        zeigeMeldung("❌ Fehlzeit konnte nicht gelöscht werden");
         return;
     }
 
+    if (!data || data.length === 0) {
+        zeigeMeldung("❌ Fehlzeit wurde nicht gelöscht");
+        return;
+    }
+
+    await ladePlanung();
     await ladeFehlzeiten();
     ladePlan();
 
-    zeigeMeldung(
-        "✅ Fehlzeit gelöscht"
-    );
+    // Die Liste im geöffneten Fenster sofort aktualisieren.
+    aktuelleAbwesenheiten();
+
+    zeigeMeldung("✅ Fehlzeit gelöscht");
 }
 async function ausgewaehlteFehlzeitLoeschen() {
     if (ausgewaehlteFehlzeitId === null) {
