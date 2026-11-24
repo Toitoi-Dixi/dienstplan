@@ -24,6 +24,7 @@ let plan = {};
 let konfliktCallback = null;
 let dienste = [];
 let fehlzeiten = [];
+let ausgewaehlteFehlzeitId = null;
 
 /* ==========================
    HILFSFUNKTIONEN
@@ -2614,6 +2615,15 @@ async function fehlzeitLoeschen(id) {
         "✅ Fehlzeit gelöscht"
     );
 }
+async function ausgewaehlteFehlzeitLoeschen() {
+    if (ausgewaehlteFehlzeitId === null) {
+        zeigeMeldung("⚠️ Bitte zuerst eine Fehlzeit auswählen");
+        return;
+    }
+
+    await fehlzeitLoeschen(ausgewaehlteFehlzeitId);
+    ausgewaehlteFehlzeitId = null;
+}
 async function ladeFehlzeiten() {
 
     const { data, error } =
@@ -2692,65 +2702,64 @@ function schliesseAktuellAbwesend() {
 
 }
 function aktuelleAbwesenheiten() {
-
     const container =
-        document.getElementById(
-            "aktuellAbwesendListe"
-        );
+        document.getElementById("aktuellAbwesendListe");
 
     container.innerHTML = "";
 
-    const heute =
-        new Date()
-            .toISOString()
-            .split("T")[0];
+    const heute = new Date();
+    const heuteText =
+        `${heute.getFullYear()}-` +
+        `${String(heute.getMonth() + 1).padStart(2, "0")}-` +
+        `${String(heute.getDate()).padStart(2, "0")}`;
 
-    fehlzeiten.forEach(
-        eintrag => {
+    const aktiveFehlzeiten =
+        fehlzeiten.filter(eintrag => eintrag.bis >= heuteText);
 
-            if (
-                bis >= heute
-            ) {
-
-                container.innerHTML +=
-
-                    "<div class='offen'>" +
-
-                 "<b>" +
-eintrag.fahrer +
-"</b>" +
-"<button onclick=\"fehlzeitLoeschen(" +
-eintrag.id +
-")\">Löschen</button><br>" +
-
-                    eintrag.art +
-                    "<br>" +
-
-                    eintrag.von +
-                    " bis " +
-                    eintrag.bis +
-
-                    "</div>";
-
-            }
-
-        }
-    );
-
-    if (
-        container.innerHTML === ""
-    ) {
-
-        container.innerHTML =
-
+    if (aktiveFehlzeiten.length === 0) {
+        container.textContent =
             "Derzeit keine aktiven Abwesenheiten.";
+    } else {
+        aktiveFehlzeiten.forEach(eintrag => {
+            const karte = document.createElement("div");
+            karte.className = "offen";
+            karte.style.display = "flex";
+            karte.style.flexDirection = "column";
+            karte.style.gap = "8px";
 
+            const kopf = document.createElement("div");
+            kopf.style.display = "flex";
+            kopf.style.justifyContent = "space-between";
+            kopf.style.alignItems = "center";
+            kopf.style.gap = "12px";
+
+            const fahrer = document.createElement("strong");
+            fahrer.textContent = eintrag.fahrer;
+
+            const loeschenButton =
+                document.createElement("button");
+
+            loeschenButton.type = "button";
+            loeschenButton.textContent = "Löschen";
+            loeschenButton.addEventListener("click", () => {
+                fehlzeitLoeschen(eintrag.id);
+            });
+
+            const details = document.createElement("div");
+            details.textContent =
+                `${eintrag.art} · ${eintrag.von} bis ${eintrag.bis}`;
+
+            kopf.appendChild(fahrer);
+            kopf.appendChild(loeschenButton);
+            karte.appendChild(kopf);
+            karte.appendChild(details);
+            container.appendChild(karte);
+        });
     }
 
     document.getElementById(
         "aktuellAbwesendOverlay"
     ).style.display = "flex";
-
 }
 function starteRealtime() {
 
