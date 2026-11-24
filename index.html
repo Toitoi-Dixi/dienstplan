@@ -142,8 +142,29 @@
 
             <h2>Planung bearbeiten</h2>
 
-            <div id="dienstBlock">
+            
+<label>
+    Art
+</label>
 
+<select
+    id="artInput"
+    onchange="artGeaendert()">
+
+    <option value="Dienst">
+
+        Dienst
+
+    </option>
+
+    <option value="Frei">
+
+        Frei
+
+    </option>
+
+</select>
+    <div id="dienstBlock">            
                 <label>Dienst</label>
 
                 <select id="dienstInput">
