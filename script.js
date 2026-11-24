@@ -2352,20 +2352,20 @@ function fehlzeitErfassen() {
     abwesenheitsarten.forEach(
         art => {
 
-            const option =
-                document.createElement(
-                    "option"
-                );
+     const option =
+    document.createElement(
+        "option"
+    );
 
-            option.value =
-                art.bezeichnung;
+option.value =
+    "Dienst";
 
-            option.textContent =
-                art.bezeichnung;
+option.textContent =
+    "Dienst";
 
-            artSelect.appendChild(
-                option
-            );
+artSelect.appendChild(
+    option
+);     
 
         }
     );
