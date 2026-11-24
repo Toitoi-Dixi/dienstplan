@@ -1433,6 +1433,39 @@ const datum =
                     fahrzeug: daten.fahrzeug
                 };
             }
+            const planEintrag =
+    plan[
+        getKey(
+            fahrer.name,
+            datum
+        )
+    ];
+
+const abwesenheit =
+    findeFehlzeit(
+        fahrer.name,
+        datum
+    );
+
+if (
+    planEintrag?.art === "Frei"
+) {
+    daten = {
+        art: "Frei",
+        dienst: "",
+        fahrzeug: ""
+    };
+}
+else if (
+    abwesenheit &&
+    daten.art === "Dienst"
+) {
+    daten = {
+        art: abwesenheit.art,
+        dienst: daten.dienst,
+        fahrzeug: daten.fahrzeug
+    };
+}
             let text1 = "";
             let text2 = "";
             let klasse = "";
