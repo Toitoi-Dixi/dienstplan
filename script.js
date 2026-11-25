@@ -265,80 +265,138 @@ function konfliktAbbrechen() {
 /* ==========================
    FAHRER
 ========================== */
-function fahrerHinzufuegen() {
+async function fahrerHinzufuegen() {
+    const standortSelect =
+        document.getElementById("neuFahrerStandort");
 
-    document.getElementById(
-        "fahrerNeuOverlay"
-    ).style.display = "flex";
+    standortSelect.innerHTML =
+        '<option value="">Standort auswählen</option>';
 
+    const { data, error } =
+        await supabaseClient
+            .from("Standorte")
+            .select("name")
+            .eq("aktiv", true);
+
+    if (error) {
+        console.log(error);
+        zeigeMeldung("❌ Standorte konnten nicht geladen werden");
+        return;
+    }
+
+    const standorte =
+        (data || []).sort((a, b) => {
+            const indexA = standortReihenfolge.indexOf(a.name);
+            const indexB = standortReihenfolge.indexOf(b.name);
+
+            return (
+                (indexA === -1 ? 999 : indexA) -
+                (indexB === -1 ? 999 : indexB)
+            );
+        });
+
+    standorte.forEach(standort => {
+        const option =
+            document.createElement("option");
+
+        option.value = standort.name;
+        option.textContent = standort.name;
+
+        standortSelect.appendChild(option);
+    });
+
+    document.getElementById("neuSortierung").value = "";
+    document.getElementById("fahrerNeuOverlay").style.display = "flex";
 }
+
+async function aktualisiereNeuFahrerSortierung() {
+    const standort =
+        document.getElementById("neuFahrerStandort").value;
+
+    const sortierungFeld =
+        document.getElementById("neuSortierung");
+
+    if (!standort) {
+        sortierungFeld.value = "";
+        return;
+    }
+
+    const { data, error } =
+        await supabaseClient
+            .from("Fahrer_Stammdaten")
+            .select("sortierung")
+            .eq("standort", standort);
+
+    if (error) {
+        console.log(error);
+        sortierungFeld.value = "";
+        zeigeMeldung("❌ Sortierung konnte nicht geladen werden");
+        return;
+    }
+
+    const positionen =
+        (data || [])
+            .map(fahrer => Number(fahrer.sortierung))
+            .filter(Number.isFinite);
+
+    const letztePosition =
+        positionen.length > 0
+            ? Math.max(...positionen)
+            : 0;
+
+    sortierungFeld.value = letztePosition + 10;
+}
+
 function schliesseNeuenFahrer() {
-
-    document.getElementById(
-        "fahrerNeuOverlay"
-    ).style.display = "none";
-
+    document.getElementById("fahrerNeuOverlay").style.display = "none";
 }
-async function fahrerSpeichern() {
 
+async function fahrerSpeichern() {
     const familienname =
-        document.getElementById(
-            "neuFamilienname"
-        ).value.trim();
+        document.getElementById("neuFamilienname").value.trim();
 
     const vorname =
-        document.getElementById(
-            "neuVorname"
-        ).value.trim();
+        document.getElementById("neuVorname").value.trim();
 
     const chip =
-        document.getElementById(
-            "neuChip"
-        ).value.trim();
+        document.getElementById("neuChip").value.trim();
 
-    if (
-        !familienname ||
-        !vorname ||
-        !chip
-    ) {
+    const standort =
+        document.getElementById("neuFahrerStandort").value;
 
-        zeigeMeldung(
-            "⚠️ Alle Felder ausfüllen"
-        );
-
+    if (!familienname || !vorname || !chip || !standort) {
+        zeigeMeldung("⚠️ Alle Felder ausfüllen");
         return;
     }
 
     const chipVorhanden =
-        fahrerStammdaten.find(
-            f => f.chip === chip
-        );
+        fahrerStammdaten.find(f => f.chip === chip);
 
     if (chipVorhanden) {
-
-        zeigeMeldung(
-            "❌ Chipnummer bereits vergeben"
-        );
-
+        zeigeMeldung("❌ Chipnummer bereits vergeben");
         return;
     }
 
     const fahrerVorhanden =
         fahrerStammdaten.find(
             f =>
-                f.vorname?.toLowerCase() ===
-                    vorname.toLowerCase()
-                &&
-                f.familienname?.toLowerCase() ===
-                    familienname.toLowerCase()
+                f.vorname?.toLowerCase() === vorname.toLowerCase() &&
+                f.familienname?.toLowerCase() === familienname.toLowerCase()
         );
 
     if (fahrerVorhanden) {
+        zeigeMeldung("❌ Fahrer existiert bereits");
+        return;
+    }
 
-        zeigeMeldung(
-            "❌ Fahrer existiert bereits"
-        );
+    // Vor dem Speichern nochmals berechnen, damit die Position aktuell ist.
+    await aktualisiereNeuFahrerSortierung();
 
+    const sortierung =
+        Number(document.getElementById("neuSortierung").value);
+
+    if (!Number.isFinite(sortierung)) {
+        zeigeMeldung("❌ Sortierung konnte nicht berechnet werden");
         return;
     }
 
@@ -347,55 +405,38 @@ async function fahrerSpeichern() {
             .from("Fahrer_Stammdaten")
             .insert([
                 {
-                    familienname:
-                        familienname,
-
-                    vorname:
-                        vorname,
-
-                    chip:
-                        chip,
-
-                    status:
-                        "Aktiv"
+                    familienname: familienname,
+                    vorname: vorname,
+                    chip: chip,
+                    standort: standort,
+                    sortierung: sortierung,
+                    status: "Aktiv"
                 }
             ]);
 
     if (error) {
-
         console.log(error);
-
-        zeigeMeldung(
-            "❌ Fehler beim Speichern"
-        );
-
+        zeigeMeldung("❌ Fehler beim Speichern");
         return;
     }
 
-    document.getElementById(
-        "neuFamilienname"
-    ).value = "";
-
-    document.getElementById(
-        "neuVorname"
-    ).value = "";
-
-    document.getElementById(
-        "neuChip"
-    ).value = "";
+    document.getElementById("neuFamilienname").value = "";
+    document.getElementById("neuVorname").value = "";
+    document.getElementById("neuChip").value = "";
+    document.getElementById("neuFahrerStandort").value = "";
+    document.getElementById("neuSortierung").value = "";
 
     schliesseNeuenFahrer();
 
+    await ladeFahrer();
+    fuelleStandorte();
+    await ladeAlleFahrer();
+    ladePlan();
+
     zeigeMeldung(
-        "✅ Fahrer gespeichert"
+        `✅ Fahrer gespeichert · ${standort} · Position ${sortierung}`
     );
-
-    ladeFahrer();
 }
-
-    document.getElementById(
-        "fahrerNeuOverlay"
-    ).style.display = "none";
 
 function fahrerStatusAendern() {
 
@@ -2376,9 +2417,9 @@ zeigeMeldung(
     "✅ Status geändert"
 );
 }
-async function ladeStandorte() {
+async function ladeStandorte(selectId = "neuStandort") {
     const select =
-        document.getElementById("neuStandort");
+        document.getElementById(selectId);
 
     select.innerHTML =
         '<option value="">Standort auswählen</option>';
@@ -2390,10 +2431,8 @@ async function ladeStandorte() {
             .eq("aktiv", true)
             .order("name");
 
-    console.log("Standorte:", data);
-    console.log("Fehler:", error);
-
     if (error) {
+        console.log(error);
         return false;
     }
 
