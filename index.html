@@ -291,35 +291,39 @@ Schließen
     </div>
 
 </div> 
-    <div id="fahrerNeuOverlay"
-        class="modalOverlay">
-        <div class="modal">
-            <h2>Fahrer anlegen</h2>
-            <label>Nachname</label>
-            <input
-                type="text"
-                id="neuFamilienname">
-            <label>Vorname</label>
-            <input
-                type="text"
-                id="neuVorname">
-    <label>Chip</label>
+<div id="fahrerNeuOverlay" class="modalOverlay">
+    <div class="modal">
+        <h2>Fahrer anlegen</h2>
 
-    <input
-        type= "text"
-        id="neuChip">
-    <div class="modalButtons">
-        <button
-            onclick="fahrerSpeichern()">
-            Speichern
-        </button>
-        <button
-            onclick="schliesseNeuenFahrer()">
-            Abbrechen
-        </button>
+        <label>Nachname</label>
+        <input type="text" id="neuFamilienname">
+
+        <label>Vorname</label>
+        <input type="text" id="neuVorname">
+
+        <label>Chip</label>
+        <input type="text" id="neuChip">
+
+        <label>Standort</label>
+        <select
+            id="neuFahrerStandort"
+            onchange="aktualisiereNeuFahrerSortierung()">
+            <option value="">Standort auswählen</option>
+        </select>
+
+        <label>Nächste Sortierung am Standort</label>
+        <input type="number" id="neuSortierung" readonly>
+
+        <div class="modalButtons">
+            <button onclick="fahrerSpeichern()">
+                Speichern
+            </button>
+            <button onclick="schliesseNeuenFahrer()">
+                Abbrechen
+            </button>
+        </div>
     </div>
 </div>
-    </div>
            <div id="fahrzeugNeuOverlay"
         class="modalOverlay">
         <div class="modal">
