@@ -25,6 +25,14 @@ let konfliktCallback = null;
 let dienste = [];
 let fehlzeiten = [];
 let ausgewaehlteFehlzeitId = null;
+const standortReihenfolge = [
+    "Liesing",
+    "Raasdorf",
+    "Graz",
+    "Spittal",
+    "Wels",
+    "Hall"
+];
 
 /* ==========================
    HILFSFUNKTIONEN
@@ -1805,12 +1813,39 @@ fahrerStammdaten = data.map(
         status:
             fahrer.status,
         standort:
-            fahrer.standort
+            fahrer.standort,
+        sortierung:
+            fahrer.sortierung
 
     })
 );
+fahrerStammdaten.sort((a, b) => {
+    const standortA =
+        standortReihenfolge.indexOf(a.standort);
 
-}
+    const standortB =
+        standortReihenfolge.indexOf(b.standort);
+
+    const positionA =
+        standortA === -1
+            ? standortReihenfolge.length
+            : standortA;
+
+    const positionB =
+        standortB === -1
+            ? standortReihenfolge.length
+            : standortB;
+
+    if (positionA !== positionB) {
+        return positionA - positionB;
+    }
+
+    return (
+        (a.sortierung || 0) -
+        (b.sortierung || 0)
+    );
+});
+
 async function ladeAlleFahrer() {
 
     const { data, error } =
