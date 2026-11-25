@@ -2407,7 +2407,6 @@ function fehlzeitErfassen() {
             );
 
         }
-    );
 
     abwesenheitsarten.forEach(
         art => {
