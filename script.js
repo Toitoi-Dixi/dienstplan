@@ -1762,7 +1762,7 @@ async function ladeFahrer() {
         console.log(error);
         return;
     }
-}
+
 
     
 fahrerStammdaten = data.map(
