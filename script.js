@@ -31,7 +31,8 @@ const standortReihenfolge = [
     "Graz",
     "Spittal",
     "Wels",
-    "Hall"
+    "Hall",
+    "Dispo/ Fuhrpark"
 ];
 
 /* ==========================
