@@ -311,3 +311,22 @@ th {
     font-weight: 700;
 
 }
+.standortZeile {
+
+    background-color: #dfecef;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+}
+
+.standortZeile td {
+
+    padding: 8px 12px;
+
+    border-top: 1px solid #c8d4d8;
+
+    border-bottom: 1px solid #c8d4d8;
+
+}
