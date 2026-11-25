@@ -1352,16 +1352,13 @@ thead.innerHTML =
     kwHeader +
     header;
 let letzterStandort = "";
-   console.log(
-    "Fahrer:",
+
     fahrerStammdaten.length
 );
     for (let f = 0; f < fahrerStammdaten.length; f++) {
         const fahrer =
             fahrerStammdaten[f];
-console.log(
-    fahrer
-);
+
         let standortZeile = "";
 
 if (
