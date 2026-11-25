@@ -2438,7 +2438,7 @@ artSelect.appendChild(
     ).style.display = "flex";
 
 
-
+}
 function schliesseFehlzeit() {
 
     document.getElementById(
