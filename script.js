@@ -2424,16 +2424,16 @@ option.textContent =
 
 artSelect.appendChild(
     option
-);     
+));     
 
         }
-    );
+
 
     document.getElementById(
         "fehlzeitOverlay"
     ).style.display = "flex";
 
-}
+
 
 function schliesseFehlzeit() {
 
