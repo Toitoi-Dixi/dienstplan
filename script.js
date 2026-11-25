@@ -2365,9 +2365,34 @@ function fehlzeitErfassen() {
 
     fahrerSelect.innerHTML = "";
     artSelect.innerHTML = "";
+let letzterStandort = "";
+  fahrerStammdaten.forEach(
+    fahrer => {
 
-    fahrerStammdaten.forEach(
-        fahrer => {
+        if (
+            fahrer.standort !==
+            letzterStandort
+        ) {
+
+            letzterStandort =
+                fahrer.standort;
+
+            html +=
+
+                "<tr>" +
+
+                "<td colspan='" +
+                (tage.length + 1) +
+                "'>" +
+
+                "📍 " +
+                fahrer.standort +
+
+                "</td>" +
+
+                "</tr>";
+
+        }
 
             const option =
                 document.createElement(
