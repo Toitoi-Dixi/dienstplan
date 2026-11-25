@@ -1786,7 +1786,9 @@ fahrerStammdaten = data.map(
             fahrer.qualifikationen,
 
         status:
-            fahrer.status
+            fahrer.status,
+        standort:
+            fahrer.standort
 
     })
 );
