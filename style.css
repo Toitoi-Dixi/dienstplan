@@ -330,3 +330,16 @@ th {
     border-bottom: 1px solid #c8d4d8;
 
 }
+.standortFilter {
+
+    margin: 10px 0;
+
+    padding: 8px;
+
+    background: #eef4f6;
+
+    border: 1px solid #d0dcdc;
+
+    border-radius: 6px;
+
+}
