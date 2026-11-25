@@ -1707,6 +1707,7 @@ await ladeWochenmatrix();
 await ladePlanung();
 await ladeFehlzeiten(); 
 await ladeFahrer();
+    fuelleStandorte;
 await ladeAlleFahrer();
  ladePlan ();
     starteRealtime();
@@ -1806,6 +1807,48 @@ async function ladeAlleFahrer() {
 
     }
     alleFahrer = data;
+
+}
+function fuelleStandorte() {
+
+    const select =
+        document.getElementById(
+            "standortFilter"
+        );
+
+    select.innerHTML =
+        "<option value='Alle'>Alle Standorte</option>";
+
+    const standorte =
+        [...new Set(
+            fahrerStammdaten
+                .map(
+                    f =>
+                        f.standort
+                )
+                .filter(Boolean)
+        )];
+
+    standorte.forEach(
+        standort => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                standort;
+
+            option.textContent =
+                standort;
+
+            select.appendChild(
+                option
+            );
+
+        }
+    );
 
 }
 async function ladeAbwesenheitsarten() {
