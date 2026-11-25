@@ -1360,8 +1360,7 @@ let letzterStandort = "";
         const fahrer =
             fahrerStammdaten[f];
 console.log(
-    fahrer.name,
-    fahrer.standort
+    fahrer
 );
         let standortZeile = "";
 
