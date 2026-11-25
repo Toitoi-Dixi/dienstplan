@@ -2427,7 +2427,7 @@ artSelect.appendChild(
 );     
 
         }
-
+);
 
     document.getElementById(
         "fehlzeitOverlay"
