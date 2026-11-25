@@ -1747,17 +1747,22 @@ async function ladeWochenmatrix() {
 
 async function ladeFahrer() {
 
-   const { data, error } =
-    await supabaseClient
-        .from("Fahrer_Stammdaten")
-        .select("*")
-        .eq("status", "Aktiv")
-       .order("sortierung");
- if (error) {
+    const { data, error } =
+        await supabaseClient
+            .from("Fahrer_Stammdaten")
+            .select("*")
+            .eq("status", "Aktiv")
+            .order("standort", { ascending: true })
+            .order("sortierung", {
+                ascending: true,
+                nullsFirst: false
+            });
 
+    if (error) {
         console.log(error);
         return;
     }
+}
 
     
 fahrerStammdaten = data.map(
@@ -1813,16 +1818,18 @@ async function ladeAlleFahrer() {
         await supabaseClient
             .from("Fahrer_Stammdaten")
             .select("*")
-            .order("sortierung");
+            .order("standort", { ascending: true })
+            .order("sortierung", {
+                ascending: true,
+                nullsFirst: false
+            });
 
     if (error) {
-
         console.log(error);
         return;
-
     }
-    alleFahrer = data;
 
+    alleFahrer = data;
 }
 function fuelleStandorte() {
 
