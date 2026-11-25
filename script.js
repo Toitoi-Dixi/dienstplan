@@ -1752,7 +1752,6 @@ async function ladeFahrer() {
             .from("Fahrer_Stammdaten")
             .select("*")
             .eq("status", "Aktiv")
-            .order("standort", { ascending: true })
             .order("sortierung", {
                 ascending: true,
                 nullsFirst: false
