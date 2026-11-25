@@ -1811,7 +1811,7 @@ fahrerStammdaten = data.map(
     })
 );
 
-
+}
 async function ladeAlleFahrer() {
 
     const { data, error } =
