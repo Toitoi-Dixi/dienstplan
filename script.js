@@ -1351,13 +1351,38 @@ header +=
 thead.innerHTML =
     kwHeader +
     header;
-
+let letzterStandort = "";
     for (let f = 0; f < fahrerStammdaten.length; f++) {
-
         const fahrer =
             fahrerStammdaten[f];
+let standortZeile = "";
 
+if (
+    fahrer.standort !==
+    letzterStandort
+) {
+
+    letzterStandort =
+        fahrer.standort;
+
+    standortZeile =
+
+        "<tr class='standortZeile'>" +
+
+        "<td colspan='" +
+        (tage.length + 1) +
+        "'>" +
+
+        "📍 " +
+        fahrer.standort +
+
+        "</td>" +
+
+        "</tr>";
+
+}
        let row =
+           standortZeile +
     "<tr>" +
     "<td class='fahrer'>" +
 
@@ -2365,34 +2390,6 @@ function fehlzeitErfassen() {
 
     fahrerSelect.innerHTML = "";
     artSelect.innerHTML = "";
-let letzterStandort = "";
-  fahrerStammdaten.forEach(
-    fahrer => {
-
-        if (
-            fahrer.standort !==
-            letzterStandort
-        ) {
-
-            letzterStandort =
-                fahrer.standort;
-
-            html +=
-
-                "<tr>" +
-
-                "<td colspan='" +
-                (tage.length + 1) +
-                "'>" +
-
-                "📍 " +
-                fahrer.standort +
-
-                "</td>" +
-
-                "</tr>";
-
-        }
 
             const option =
                 document.createElement(
