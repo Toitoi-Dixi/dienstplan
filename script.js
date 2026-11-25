@@ -1722,7 +1722,7 @@ await ladeWochenmatrix();
 await ladePlanung();
 await ladeFehlzeiten(); 
 await ladeFahrer();
-    fuelleStandorte;
+    fuelleStandorte();
 await ladeAlleFahrer();
  ladePlan ();
     starteRealtime();
