@@ -1358,7 +1358,22 @@ let letzterStandort = "";
     for (let f = 0; f < fahrerStammdaten.length; f++) {
         const fahrer =
             fahrerStammdaten[f];
+const standortFilter =
+    document.getElementById(
+        "standortFilter"
+    ).value;
 
+if (
+    standortFilter !==
+        "Alle"
+    &&
+    fahrer.standort !==
+        standortFilter
+) {
+
+    continue;
+
+}
         let standortZeile = "";
 
 if (
