@@ -2424,7 +2424,7 @@ option.textContent =
 
 artSelect.appendChild(
     option
-));     
+);     
 
         }
 
