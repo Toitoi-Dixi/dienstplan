@@ -2388,25 +2388,29 @@ function fehlzeitErfassen() {
             "fehlzeitArt"
         );
 
-    fahrerSelect.innerHTML = "";
-    artSelect.innerHTML = "";
+   fahrerSelect.innerHTML = "";
+artSelect.innerHTML = "";
 
-            const option =
-                document.createElement(
-                    "option"
-                );
+fahrerStammdaten.forEach(
+    fahrer => {
 
-            option.value =
-                fahrer.name;
-
-            option.textContent =
-                fahrer.name;
-
-            fahrerSelect.appendChild(
-                option
+        const option =
+            document.createElement(
+                "option"
             );
 
-        }
+        option.value =
+            fahrer.name;
+
+        option.textContent =
+            fahrer.name;
+
+        fahrerSelect.appendChild(
+            option
+        );
+
+    }
+);
 
     abwesenheitsarten.forEach(
         art => {
