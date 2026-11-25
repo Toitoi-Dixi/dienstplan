@@ -339,4 +339,18 @@ th {
     min-width: 160px;
 
 }
+.standortLabel {
 
+    background-color: #dfecef;
+
+    color: #2f4f4f;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    padding: 4px 8px;
+
+    border-radius: 4px;
+
+}
