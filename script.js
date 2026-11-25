@@ -1845,7 +1845,7 @@ fahrerStammdaten.sort((a, b) => {
         (b.sortierung || 0)
     );
 });
-
+}
 async function ladeAlleFahrer() {
 
     const { data, error } =
