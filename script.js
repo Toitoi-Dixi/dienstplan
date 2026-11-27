@@ -1142,20 +1142,22 @@ function offeneDiensteErmitteln() {
 
 }
           
-        else if (
-            eintrag.art === "Dienst" &&
-            wmEintrag &&
-            wmEintrag.dienst !== eintrag.dienst
-        ) {
+else if (
+    eintrag.art === "Dienst" &&
+    wmEintrag?.dienst &&
+    wmEintrag.dienst !== eintrag.dienst &&
+    !istDienstVerplant(
+        wmEintrag.dienst,
+        datum
+    )
+) {
 
-            liste.push({
-                datum: datum,
-                dienst: wmEintrag.dienst
-            });
+    liste.push({
+        datum: datum,
+        dienst: wmEintrag.dienst
+    });
 
-        }
-
-    }
+}
 fehlzeiten.forEach(fehlzeit => {
     let datum = new Date(`${fehlzeit.von}T00:00:00`);
     const bis = new Date(`${fehlzeit.bis}T00:00:00`);
